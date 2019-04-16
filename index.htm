@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> PAC-MAN </title>
+    <meta name="author" content="Idan Weizman - ID 312614175">
+    <meta name="author" content="Edan Ben Ivri - ID 304846348">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="misc/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="misc/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="misc/favicon-16x16.png">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+</head>
+
+<body>
+    <div id="welcome">
+        <h1> PACMAN </h1>
+        <br>
+        <button>Register</button>
+        <br>
+        <button>Login</button>
+        <div class="display">
+            <div class="overlay"></div>
+            <div class="pacman pacman-real">
+                <div class="pacman-mask">
+                    <div class="pacman-inner"></div>
+                </div>
+            </div>
+            <div class="pacman pacman-mirror">
+                <div class="pacman-mask">
+                    <div class="pacman-inner"></div>
+                </div>
+            </div>
+            <div class="food food-1"></div>
+            <div class="food food-2"></div>
+            <div class="food food-3"></div>
+            <div class="food food-4"></div>
+            <div class="food food-5"></div>
+            <div class="food food-6"></div>
+            <div class="food food-7"></div>
+            <div class="food food-8"></div>
+            <div class="food food-9"></div>
+            <div class="food food-10"></div>
+            <div class="food food-11"></div>
+        </div>
+
+    </div>
+    <div id="game">
+        SCORE:
+        <input id="lblScore" type="text" />
+        <br />
+        TIME:
+        <input id="lblTime" type="text" />
+        <br />
+        <canvas id="canvas" height="600" width="600"></canvas>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
+
+    <br>
+    <br>
+
+    <footer>Edan & Idan </footer>
+
+</body>
+
+</html>
