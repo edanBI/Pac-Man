@@ -8,6 +8,25 @@ var start_time;
 var time_elapsed;
 var interval;
 
+class UserData {
+	constructor(username, password, firstname, lastname, email, birthday){
+		this.username = username;
+		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.birthday = birthday;
+	}
+}
+
+const game = document.getElementById("game");
+const welcome = document.getElementById("welcome");
+const register = document.getElementById("register");
+const login = document.getElementById("login");
+let users = [new UserData('a', 'a','a','a','a@asdf','1-3-1991')]; // holds the users. username 'a' with password 'a' as mentioned in the instructions
+
+
+
 function Start() {
 	board = new Array();
 	score = 0;
@@ -155,12 +174,78 @@ function UpdatePosition() {
 	} else {
 		Draw();
 	}
-} 
-
-function login() {
-
 }
+
+function displayRegister() {
+	welcome.style.display = 'none';
+	register.style.display = 'unset';
+}
+
+function displayLogin() {
+	welcome.style.display = 'none';
+	login.style.display = 'unset';
+}
+
+function submitRegister() {
+	var formInputs = document.getElementsByClassName('regform');
+	var data = Array.prototype.filter.call(formInputs, e => e.value.value);
+	//alert(userData[0].value);
+	
+}
+
+function validateDetails(details) {
+	// details.substring(0, details.indexOf(':'))
+	// details.substring(details.indexOf(':')+1)
+	let usrFound = false;
+	for(var i=0; i < users.length; i++){
+		if(users[i] === details)
+			usrFound = true;
+	}
+	return usrFound;
+}
+
+$(document).ready(function () {
+	$("#registerform").validate({
+		rules: {
+			username: "required",
+			password: {
+				required: true,
+				minlength: 8,
+				alphanumeric: true
+			},
+			firstname: {
+				required: true,
+				lettersonly: true
+			},
+			lastname: {
+				required: true,
+				lettersonly: true
+			},
+			email: "required",
+			birthday: "required"
+		},
+		messages: {
+			username: " Please Enter Username.",
+			password: {
+				required: " Enter Password",
+				minlength: " Password length should me at least 8 characters.",
+				alphanumeric: " no symbols allowed!"
+			},
+			firstname: {
+				required: "Enter First Name",
+				lettersonly: "name should contain ONLY letters."
+			},
+			lastname: {
+				required: "Enter Last Name",
+				lettersonly: "name should contain ONLY letters."
+			},
+			email: " Enter a valid email address.",
+			birthday: "enter your birthday"
+		}
+	})
+});
+
 //Start();
-let game = document.getElementById("game");
-game.hidden = true;
-debugger;
+game.style.display = 'none';
+register.style.display = 'none';
+login.style.display = 'none';

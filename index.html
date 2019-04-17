@@ -3,56 +3,101 @@
 
 <head>
     <title> PAC-MAN </title>
-    <meta name="author" content="Idan Weizman - ID 312614175">
-    <meta name="author" content="Edan Ben Ivri - ID 304846348">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="movingPacMan.css">
     <link rel="apple-touch-icon" sizes="180x180" href="misc/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="misc/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="misc/favicon-16x16.png">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+
+    <meta name="author" content="Idan Weizman::312614175,  Edan Ben Ivri::304846348">
 </head>
 
 <body>
-    <div id="welcome">
-        <h1> PACMAN </h1>
-        <br>
-        <button>Register</button>
-        <br>
-        <button>Login</button>
-        <div class="display">
-            <div class="overlay"></div>
-            <div class="pacman pacman-real">
-                <div class="pacman-mask">
-                    <div class="pacman-inner"></div>
-                </div>
-            </div>
-            <div class="pacman pacman-mirror">
-                <div class="pacman-mask">
-                    <div class="pacman-inner"></div>
-                </div>
-            </div>
-            <div class="food food-1"></div>
-            <div class="food food-2"></div>
-            <div class="food food-3"></div>
-            <div class="food food-4"></div>
-            <div class="food food-5"></div>
-            <div class="food food-6"></div>
-            <div class="food food-7"></div>
-            <div class="food food-8"></div>
-            <div class="food food-9"></div>
-            <div class="food food-10"></div>
-            <div class="food food-11"></div>
+    <div id="content">
+        <div id="menu">
+            
         </div>
 
-    </div>
-    <div id="game">
-        SCORE:
-        <input id="lblScore" type="text" />
-        <br />
-        TIME:
-        <input id="lblTime" type="text" />
-        <br />
-        <canvas id="canvas" height="600" width="600"></canvas>
+        <!-- welcome page -->
+        <div id="welcome">
+            <h1> PAC-MAN </h1>
+            <br>
+            <button onclick="displayRegister()">Register</button>
+            <br>
+            <button onclick="displayLogin()">Login</button>
+            <div class="display">
+                <div class="overlay"></div>
+                <div class="pacman pacman-real">
+                    <div class="pacman-mask">
+                        <div class="pacman-inner"></div>
+                    </div>
+                </div>
+                <div class="pacman pacman-mirror">
+                    <div class="pacman-mask">
+                        <div class="pacman-inner"></div>
+                    </div>
+                </div>
+                <div class="food food-1"></div>
+                <div class="food food-2"></div>
+                <div class="food food-3"></div>
+                <div class="food food-4"></div>
+                <div class="food food-5"></div>
+                <div class="food food-6"></div>
+                <div class="food food-7"></div>
+                <div class="food food-8"></div>
+                <div class="food food-9"></div>
+                <div class="food food-10"></div>
+                <div class="food food-11"></div>
+            </div>
+        </div>
+
+        <!-- register page -->
+        <div id="register">
+            <h1> REGISTER </h1>
+            <form id="registerform">
+                <label>Username: &nbsp;</label>
+                <input type="text" class="regform" name="username" required> <br><br>
+                <label>Password: &nbsp;&nbsp;</label>
+                <input type="password" class="regform" name="password" required> <br><br>
+                <label>FirstName: &nbsp;</label>
+                <input type="text" class="regform" name="firstname" required> <br><br>
+                <label>LastName: &nbsp;</label>
+                <input type="text" class="regform" name="lastname" required> <br><br>
+                <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="email" class="regform" name="email" required> <br><br>
+                <label>Birthday:&nbsp;</label> <input type="date" name="birthday" required> <br><br>
+                <input type="button" onclick="submitRegister()" value="Submit">
+            </form>
+        </div>
+
+        <!-- login page -->
+        <div id="login">
+            <h1> LOGIN </h1>
+            <form>
+                <label>Username: &nbsp;&nbsp;</label> <input type="text" name="username" required> <br><br>
+                <label>Password: &nbsp;&nbsp;</label> <input type="password" name="password" required> <br><br>
+                <input type="submit" placeholder="Login">
+            </form>
+        </div>
+
+        <!-- settings page -->
+        <div id="settings">
+
+        </div>
+
+        <!-- game board page -->
+        <div id="game">
+            SCORE:
+            <input id="lblScore" type="text" />
+            <br />
+            TIME:
+            <input id="lblTime" type="text" />
+            <br />
+            <canvas id="canvas" height="600" width="600"></canvas>
+        </div>
     </div>
     <script type="text/javascript" src="main.js"></script>
 
