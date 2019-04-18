@@ -23,9 +23,9 @@ const game = document.getElementById("game");
 const welcome = document.getElementById("welcome");
 const register = document.getElementById("register");
 const login = document.getElementById("login");
-let users = [new UserData('a', 'a','a','a','a@asdf','1-3-1991')]; // holds the users. username 'a' with password 'a' as mentioned in the instructions
-
-
+const submitBtn = document.getElementById("submitBtn");
+const submitLogin = document.getElementById("submitLogin");
+let users = [new UserData('a','a','a','a','a@a','1-3-1991')]; // holds the users. username 'a' with password 'a' as mentioned in the instructions
 
 function Start() {
 	board = new Array();
@@ -186,22 +186,41 @@ function displayLogin() {
 	login.style.display = 'unset';
 }
 
-function submitRegister() {
-	var formInputs = document.getElementsByClassName('regform');
-	var data = Array.prototype.filter.call(formInputs, e => e.value.value);
-	//alert(userData[0].value);
-	
+function displayGame() {
+	register.style.display = 'none';
+	game.style.display = 'unset';
 }
 
-function validateDetails(details) {
-	// details.substring(0, details.indexOf(':'))
-	// details.substring(details.indexOf(':')+1)
-	let usrFound = false;
-	for(var i=0; i < users.length; i++){
-		if(users[i] === details)
-			usrFound = true;
+/** returns an array containing the form's inputs data */
+function getFormData(form_id) {
+	let formInputs = document.getElementsByClassName(form_id);
+	var data = Array.prototype.filter.call(formInputs, e => e.value);
+	return data;
+}
+
+/** accept the user's data from registration form and adds it as a new 'userData' object onto users array */
+function submitRegister() {
+	var data = getFormData('regform');
+	users.push(new UserData(data[0].value, data[1].value, data[2].value, data[3].value, data[4].value, data[5].value));
+	// go to game screen
+	//debugger;
+	alert("pushed!")
+	displayGame();
+}
+
+function validateUserLogin() {
+	const data = getFormData('logform');
+	let user = users.filter(e => { 
+		return e.username === data[0].value && e.password === data[1].value;
+	});
+	debugger;
+	if(user.length === 1) {
+		//alert(`Username: ${data[0].value}, approved!`); 
+		// meaning the user exist in the system so from here should be forward onto game board.
+	} else {
+		alert(`Access Denied. '${data[0].value}' does not exist or password '${data[1].value}' incorrect.`)
 	}
-	return usrFound;
+	
 }
 
 $(document).ready(function () {
@@ -242,10 +261,30 @@ $(document).ready(function () {
 			email: " Enter a valid email address.",
 			birthday: "enter your birthday"
 		}
-	})
+	});
+	$("#loginform").validate({
+		rules: {
+			username: {
+				required: true,
+				alphanumeric: true
+			},
+			password: {
+				required: true,
+				alphanumeric: true,
+				//minlength: 8
+			}
+		},
+		messages: {
+			username: " Enter a valid username.",
+			password: " Enter a valid password."
+		}
+	});
 });
 
 //Start();
+submitBtn.addEventListener("click", submitRegister);
+submitLogin.addEventListener("click", validateUserLogin)
+login.addEventListener("click", displayLogin);
 game.style.display = 'none';
 register.style.display = 'none';
 login.style.display = 'none';

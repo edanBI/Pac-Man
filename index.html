@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
     <meta name="author" content="Idan Weizman::312614175,  Edan Ben Ivri::304846348">
 </head>
@@ -68,18 +69,18 @@
                 <input type="text" class="regform" name="lastname" required> <br><br>
                 <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <input type="email" class="regform" name="email" required> <br><br>
-                <label>Birthday:&nbsp;</label> <input type="date" name="birthday" required> <br><br>
-                <input type="button" onclick="submitRegister()" value="Submit">
+                <label>Birthday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="date" name="birthday" required> <br><br>
+                <input type="submit" id="submitBtn" value="Submit">
             </form>
         </div>
 
         <!-- login page -->
         <div id="login">
             <h1> LOGIN </h1>
-            <form>
-                <label>Username: &nbsp;&nbsp;</label> <input type="text" name="username" required> <br><br>
-                <label>Password: &nbsp;&nbsp;</label> <input type="password" name="password" required> <br><br>
-                <input type="submit" placeholder="Login">
+            <form id="loginform">
+                <label>Username: &nbsp;&nbsp;</label> <input type="text" class="logform" name="username" required> <br><br>
+                <label>Password: &nbsp;&nbsp;&nbsp;</label> <input type="password" class="logform" name="password" required> <br><br>
+                <input type="submit" id="submitLogin" value="Login">
             </form>
         </div>
 
@@ -101,6 +102,16 @@
     </div>
     <script type="text/javascript" src="main.js"></script>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
 
