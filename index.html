@@ -12,94 +12,178 @@
     <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <style>
+        .ui-widget-header,
+        .ui-state-default,
+        ui-button {
+            background: #2094dc;
+            border: 1px solid #f1f1f1;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+        .ui-widget-overlay {
+            opacity: 0;
+            /* removes the greyish background */
+        }
+    </style>
+    <!-- AUTHORS -->
     <meta name="author" content="Idan Weizman::312614175,  Edan Ben Ivri::304846348">
 </head>
 
 <body>
-    <div id="content">
-        <div id="menu">
-            
-        </div>
+    <div id="navbar">
+        <button id="nb_welcome" onclick="displayDiv('welcome')"> Welcome &nbsp; </button>
+        <button id="nb_register" onclick="displayDiv('register')"> Register &nbsp; </button>
+        <button id="nb_login" onclick="displayDiv('login')"> Login &nbsp; </button>
+        <button id="nb_about"> About &nbsp; </button>
+    </div>
 
-        <!-- welcome page -->
-        <div id="welcome">
-            <h1> PAC-MAN </h1>
-            <br>
-            <button onclick="displayRegister()">Register</button>
-            <br>
-            <button onclick="displayLogin()">Login</button>
-            <div class="display">
-                <div class="overlay"></div>
-                <div class="pacman pacman-real">
-                    <div class="pacman-mask">
-                        <div class="pacman-inner"></div>
-                    </div>
+    <!-- welcome page -->
+    <div id="welcome" class="windows">
+        <h1> PAC-MAN </h1>
+        <br>
+        <button onclick="displayDiv('register')"> Register </button>
+        <br>
+        <button onclick="displayDiv('login')"> Login </button>
+        <div class="display">
+            <div class="overlay"></div>
+            <div class="pacman pacman-real">
+                <div class="pacman-mask">
+                    <div class="pacman-inner"></div>
                 </div>
-                <div class="pacman pacman-mirror">
-                    <div class="pacman-mask">
-                        <div class="pacman-inner"></div>
-                    </div>
-                </div>
-                <div class="food food-1"></div>
-                <div class="food food-2"></div>
-                <div class="food food-3"></div>
-                <div class="food food-4"></div>
-                <div class="food food-5"></div>
-                <div class="food food-6"></div>
-                <div class="food food-7"></div>
-                <div class="food food-8"></div>
-                <div class="food food-9"></div>
-                <div class="food food-10"></div>
-                <div class="food food-11"></div>
             </div>
-        </div>
-
-        <!-- register page -->
-        <div id="register">
-            <h1> REGISTER </h1>
-            <form id="registerform">
-                <label>Username: &nbsp;</label>
-                <input type="text" class="regform" name="username" required> <br><br>
-                <label>Password: &nbsp;&nbsp;</label>
-                <input type="password" class="regform" name="password" required> <br><br>
-                <label>FirstName: &nbsp;</label>
-                <input type="text" class="regform" name="firstname" required> <br><br>
-                <label>LastName: &nbsp;</label>
-                <input type="text" class="regform" name="lastname" required> <br><br>
-                <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="email" class="regform" name="email" required> <br><br>
-                <label>Birthday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="date" name="birthday" required> <br><br>
-                <input type="submit" id="submitBtn" value="Submit">
-            </form>
-        </div>
-
-        <!-- login page -->
-        <div id="login">
-            <h1> LOGIN </h1>
-            <form id="loginform">
-                <label>Username: &nbsp;&nbsp;</label> <input type="text" class="logform" name="username" required> <br><br>
-                <label>Password: &nbsp;&nbsp;&nbsp;</label> <input type="password" class="logform" name="password" required> <br><br>
-                <input type="submit" id="submitLogin" value="Login">
-            </form>
-        </div>
-
-        <!-- settings page -->
-        <div id="settings">
-
-        </div>
-
-        <!-- game board page -->
-        <div id="game">
-            SCORE:
-            <input id="lblScore" type="text" />
-            <br />
-            TIME:
-            <input id="lblTime" type="text" />
-            <br />
-            <canvas id="canvas" height="600" width="600"></canvas>
+            <div class="pacman pacman-mirror">
+                <div class="pacman-mask">
+                    <div class="pacman-inner"></div>
+                </div>
+            </div>
+            <div class="food food-1"></div>
+            <div class="food food-2"></div>
+            <div class="food food-3"></div>
+            <div class="food food-4"></div>
+            <div class="food food-5"></div>
+            <div class="food food-6"></div>
+            <div class="food food-7"></div>
+            <div class="food food-8"></div>
+            <div class="food food-9"></div>
+            <div class="food food-10"></div>
+            <div class="food food-11"></div>
         </div>
     </div>
+
+    <!-- register page -->
+    <div id="register" class="windows">
+        <h1> REGISTER </h1>
+        <form id="registerform" action="Javascript:submitRegister()">
+            <label>Username: &nbsp;</label>
+            <input type="text" class="regform" name="username" required> <br><br>
+            <label>Password: &nbsp;&nbsp;</label>
+            <input type="password" class="regform" name="password" required> <br><br>
+            <label>FirstName: &nbsp;</label>
+            <input type="text" class="regform" name="firstname" required> <br><br>
+            <label>LastName: &nbsp;</label>
+            <input type="text" class="regform" name="lastname" required> <br><br>
+            <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="email" class="regform" name="email" required> <br><br>
+            <label>Birthday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="date" name="birthday"
+                required> <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- login page -->
+    <div id="login" class="windows">
+        <h1> LOGIN </h1>
+        <form id="loginform" action="Javascript:validateUserLogin()">
+            <label>Username: &nbsp;&nbsp;</label> <input type="text" class="logform" name="username" required> <br><br>
+            <label>Password: &nbsp;&nbsp;&nbsp;</label> <input type="password" class="logform" name="password" required>
+            <br><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div id="game" class="windows">
+        <div class="column left">
+            <h2> SETTINGS </h2>
+            <form id="settingsform">
+                <label>Choose Game Keys </label> <br><br>
+                <label>Up key</label><input type="text" id="up" size="1" /><br />
+                <label>Down key</label><input type="text" id="down" size="1" /><br />
+                <label>Right key</label><input type="text" id="right" size="1" /><br />
+                <label>Left key</label><input type="text" id="left" size="1" /><br />
+    
+                <label>Amount of Balls (50-90) &nbsp;&nbsp;</label> <input type="text" class="setform" id="lblsetBallsNum"
+                    name="ballsnumber" size="4" value="90" required> <br><br>
+                <label>Amount of Monsters (1-3) </label> <input type="number" class="setform" id="lblsetMonsterNum"
+                    name="monstersnum" value="1" required> <br><br>
+                <label>Difficulty Level:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    type="radio" name="difficulty" onclick="diffcultyLevel(this.value)" value="600" checked>Beginner<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    type="radio" name="difficulty" onclick="diffcultyLevel(this.value)" value="500">Amateur<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    type="radio" name="difficulty" onclick="diffcultyLevel(this.value)" value="400">Professional<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    type="radio" name="difficulty" onclick="diffcultyLevel(this.value)" value="300">World Class<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    type="radio" name="difficulty" onclick="diffcultyLevel(this.value)" value="200">Legendary<br><br>
+    
+    
+                <label>Time For Game (Sec) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="number" class="setform"
+                    id="lblsetTime" name="gameTime" size="4" value="60" required> <br><br>
+                <label>5 Points Ball Color &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input
+                    type="color" class="setform" id="ball5pt" name="5ptballs" value="#ff0000" required> <br><br>
+                <label>15 Points Ball Color &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="color"
+                    class="setform" id="ball15pt" name="15ptballs" value="#00ff00" required> <br><br>
+                <label>25 points Ball Color &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="color"
+                    class="setform" id="ball25pt" name="25ptballs" value="#A52A2A" required> <br><br>
+                <label>For Random Settings &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="button"
+                    value="Click here" onclick="randomsettings()"> <br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="saveSetting" value="Save" onclick="saveSettings()">
+                <input type="button" id="newgame" value="New Game" onclick="newGame()">
+    
+            </form>
+        </div>
+        <div class="column middle">
+            <img id="monster1" width="60" height="60" style="display: none;" src="misc/monster1.png">
+            <img id="monster2" width="60" height="60" style="display: none;" src="misc/monster2.png">
+            <img id="monster3" width="60" height="60" style="display: none;" src="misc/monster3.png">
+            <img id="hamburger" width="60" height="60" style="display: none;" src="misc/hamburger.png">
+    
+            <canvas id="canvas" height="965" width="725"></canvas>
+        </div>
+        <div class="column right">
+            SCORE&nbsp;
+            <input id="lblScore" type="text" />
+            <br><br>
+            TIME&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="lblTime" type="text" />
+            <br><br>
+            LIFE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="lblLife" type="text">
+        </div>
+    </div>
+    
+    <div id="about" title="About">
+        Idan Weizman - 312614175, &nbsp; Edan Ben Ivri - 304846348
+        We have used the following jQuery plugins:
+        <ul>
+            <li> <a href="https://jqueryvalidation.org/"> jQuery Validation </a> </li>
+            <li> <a href="https://jqueryui.com/dialog/"> jQuery UI dialog </a> </li>
+        </ul>
+
+        During our game developement, we have encountered the following problems:
+        <ul>
+            <!-- ***************************************************************** -->
+            <!-- ***************************************************************** -->
+            <!-- **************** !!!!!!!ADD PROBLEMS HERE!!!!!!  **************** -->
+            <!-- ***************************************************************** -->
+            <!-- ***************************************************************** -->
+        </ul>
+    </div>
+
     <script type="text/javascript" src="main.js"></script>
 
     <br>
@@ -114,8 +198,16 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    <footer>Edan & Idan </footer>
+    <footer>
+        Edan & Idan
+    </footer>
 
 </body>
 
