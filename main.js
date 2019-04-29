@@ -51,13 +51,7 @@ var xMnstr3 = 8000;
 var yMnstr3 = 8000;
 var xHmbrgr = 14;
 var yHmbrgr = 14;
-//Start();
 
-// const welcome = document.getElementById("welcome");
-// const register = document.getElementById("register");
-// const login = document.getElementById("login");
-// const settings = document.getElementById("settings");
-// const game = document.getElementById("game");
 const windows = document.getElementsByClassName("windows");
 
 class UserData {
@@ -73,7 +67,7 @@ class UserData {
 
 let usersMap = new Map();
 if (usersMap.size === 0)
-	usersMap.set('a', new UserData('a','a','','','','')); // the default user
+	usersMap.set('a', new UserData('a', 'a', '', '', '', '')); // the default user
 
 // [welcome, register, login, game]
 function displayDiv(_div) {
@@ -95,11 +89,11 @@ function displayDiv(_div) {
 		windows[3].style.display = 'none';
 		windows[2].style.display = 'unset';
 	}
-	else if (_div === 'game'){
+	else if (_div === 'game') {
 		windows[0].style.display = 'none';
 		windows[1].style.display = 'none';
 		windows[2].style.display = 'none';
-		windows[3].style.display = 'unset';
+		windows[3].style.display = 'flex';
 	}
 }
 
@@ -124,11 +118,8 @@ function validateUserLogin() {
 		displayDiv('game');
 		document.forms['loginform'].reset();
 	}
-	else alert(`User ${_username} with password ${_password} is not registered.`);		
+	else alert(`User ${_username} with password ${_password} is not registered.`);
 }
-
-/*********************************************************************************************************/
-/*********************************************************************************************************/
 
 function saveSettings() {
 	monstersAmount = lblsetMonsterNum.value;
@@ -491,7 +482,7 @@ function Draw() {
 				context.rect(center.x - 12, center.y - 12, 25, 25);
 				context.fillStyle = "blue"; //color 
 				context.fill();
-			} else if (board[i][j] == 0) {
+			} else if (board[i][j] == 0) { // pacman
 				if (pos == 1) //up
 				{
 					context.beginPath();
@@ -551,7 +542,7 @@ function Draw() {
 				context.arc(center.x + 2, center.y - 7, 3, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color 
 				context.fill();*/
-			} else if (board[i][j] == 1) {
+			} else if (board[i][j] == 1) { //food
 				context.beginPath();
 				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = color5; //color 
@@ -681,9 +672,6 @@ function UpdatePosition() {
 	Draw();
 }
 
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-
 // jQuery section
 $(function () {
 	var $about = $("#about");
@@ -695,12 +683,12 @@ $(function () {
 		width: 500,
 		height: 400,
 		resizable: false,
-		open: function(){
-            jQuery('.ui-widget-overlay').bind('click',function(){
+		open: function () {
+			jQuery('.ui-widget-overlay').bind('click', function () {
 				$about.dialog('close');
-            })
+			})
 		},
-		close: function(){
+		close: function () {
 			$nb_about.prop('disabled', false);
 		}
 	});
