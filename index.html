@@ -41,7 +41,7 @@
             <button id="nb_login" onclick="displayDiv('login')"> Login </button>
             <button id="nb_about"> About </button>
         </div>
-        <div style="color: black"><label id="loggedUser"></label></div>
+        <div id="userDisplay"><label id="loggedUser"></label></div>
         <div id="logo"> <img src="misc/logo.png" width="310" height="65"> </div>
     </div>
 
@@ -82,19 +82,36 @@
     <div id="register" class="windows">
         <h1> REGISTER </h1>
         <form id="registerform" action="Javascript:submitRegister()">
-            <label>Username: &nbsp;</label>
-            <input type="text" class="regform" name="username" required> <br><br>
-            <label>Password: &nbsp;&nbsp;</label>
-            <input type="password" class="regform" name="password" required> <br><br>
-            <label>FirstName: &nbsp;</label>
-            <input type="text" class="regform" name="firstname" required> <br><br>
-            <label>LastName: &nbsp;</label>
-            <input type="text" class="regform" name="lastname" required> <br><br>
-            <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="email" class="regform" name="email" required> <br><br>
-            <label>Birthday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> <input type="date" name="birthday"
-                required> <br><br>
-            <input type="submit" value="Submit">
+            <table style="width:100%">
+                <tr>
+                    <td><label>Username:</label></td>
+                    <td><input type="text" class="regform" name="username" required></td>
+                </tr>
+                <tr>
+                    <td><label>Password:</label> </td>
+                    <td><input type="password" class="regform" name="password" required></td>
+                </tr>
+                <tr>
+                    <td><label>FirstName:</label></td>
+                    <td><input type="text" class="regform" name="firstname" required> </td>
+                </tr>
+                <tr>
+                    <td><label>LastName:</label></td>
+                    <td><input type="text" class="regform" name="lastname" required> </td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="email" class="regform" name="email" required></td>
+                </tr>
+                <tr>
+                    <td><label>Birthday:</label> </td>
+                    <td><input type="date" name="birthday" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center; padding: 10px;"><input type="submit" id="regSubmit"
+                            value="Submit"></td>
+                </tr>
+            </table>
         </form>
     </div>
 
@@ -105,7 +122,7 @@
             <label>Username: &nbsp;&nbsp;</label> <input type="text" class="logform" name="username" required> <br><br>
             <label>Password: &nbsp;&nbsp;&nbsp;</label> <input type="password" class="logform" name="password" required>
             <br><br>
-            <input type="submit" value="Login">
+            <input type="submit" id="logSubmit" value="Login">
         </form>
     </div>
 
@@ -191,12 +208,12 @@
                     </tr>
                     <tr>
                         <td class="leftCol"><label>For Random Settings </label></td>
-                        <td class="rightCol"><input type="button" value="Click here" onclick="randomsettings()"></td>
+                        <td class="rightCol"><input type="button" class="settingButton" value="Click here" onclick="randomsettings()"></td>
                     </tr>
                     <tr>
-                        <td class="leftCol"><input type="button" id="saveSetting" value="Save" onclick="saveSettings()">
+                        <td class="leftCol"><input type="button" class="settingButton" id="saveSetting" value="Save" onclick="saveSettings()">
                         </td>
-                        <td class="rightCol"> <input type="button" id="newgame" value="New Game" onclick="newGame()">
+                        <td class="rightCol"> <input type="button" class="settingButton" id="newgame" value="New Game" onclick="newGame()">
                         </td>
                     </tr>
                 </table>

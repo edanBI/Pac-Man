@@ -16,22 +16,50 @@ body {
 	display: none;
 }
 
-h1 {
+h1,
+#loggedUser,
+#regSubmit,
+#logSubmit,
+.settingButton {
 	padding: 30px 0 0 0;
 	color: yellow;
 	font-family: 'Press Start 2P', cursive;
 	text-align: center;
+}
+
+h1 {
 	font-size: 400%;
+}
+
+#loggedUser {
+	font-size: 70%;
+}
+
+#regSubmit,
+#logSubmit {
+	font-size: 80%;
+	background-color: black;
+	padding: 10px;
+}
+
+.settingButton {
+	font-size: 50%;
+	background-color: black;
+	padding: 5px;
+}
+
+input[type="color"] {
+	background-color: black;
+	-webkit-appearance: none;
+	border: none;
 }
 
 #navbar {
 	display: flex;
-	/* flex-direction: column;
-	align-items: center; */
+	/* flex-direction: column; */
 	justify-content: space-between;
 	background-color: #fccf00;
-	/* background-color: rgb(248, 205, 85); */
-	color: yellow;
+	align-items: center;
 	text-decoration: none;
 }
 
@@ -40,11 +68,10 @@ h1 {
 	padding: 0 -20px 0 0;
 	display: flex;
 	justify-content: space-evenly;
-	align-items: center;
 }
 
 #logo {
-	padding: 0 20px 0 0; 
+	padding: 0 20px 0 0;
 }
 
 #welcome {
@@ -59,14 +86,29 @@ button {
 	font-family: 'Press Start 2P', cursive;
 }
 
-#welcome button, #navbar button {
+#welcome button,
+#navbar button {
 	width: 30%;
 	height: 50px;
 }
 
 #navbar button {
 	width: 120px;
-	height: 30px;	
+	height: 30px;
+}
+
+#userDisplay {
+	vertical-align: middle;
+}
+
+#loggedUser {
+	font-weight: bolder;
+	color: black;
+}
+
+#register {
+	flex-direction: column;
+	align-items: center;
 }
 
 #register form,
@@ -79,6 +121,16 @@ button {
 	color: yellow;
 }
 
+#register form {
+	margin: 0;
+}
+
+#register td {
+	height: 50px;
+	padding: 0 15px;
+	text-align: left;
+}
+
 #game {
 	width: 100%;
 	height: 100%;
@@ -87,11 +139,6 @@ button {
 	justify-content: space-around;
 	align-items: flex-start;
 	color: yellow;
-}
-
-.middle {
-	width: 40%;
-	border: 5px orange solid;
 }
 
 .middle,
@@ -116,7 +163,6 @@ button {
 }
 
 .right {
-	/* width: 25%; */
 	padding: 0 5px;
 }
 

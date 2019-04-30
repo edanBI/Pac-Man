@@ -74,13 +74,17 @@ class UserData {
 		this.birthday = birthday;
 	}
 }
-
+let userLabel = document.getElementById("loggedUser");
 let usersMap = new Map();
 if (usersMap.size === 0)
 	usersMap.set('a', new UserData('a', 'a', '', '', '', '')); // the default user
 
 // [welcome, register, login, game]
 function displayDiv(_div) {
+	if (_div !== 'game') {
+		resetGame();
+		userLabel.innerHTML = '';
+	}
 	if (_div === 'welcome') {
 		windows[1].style.display = 'none';
 		windows[2].style.display = 'none';
@@ -91,7 +95,7 @@ function displayDiv(_div) {
 		windows[0].style.display = 'none';
 		windows[2].style.display = 'none';
 		windows[3].style.display = 'none';
-		windows[1].style.display = 'unset';
+		windows[1].style.display = 'flex';
 	}
 	else if (_div === 'login') {
 		windows[0].style.display = 'none';
@@ -125,7 +129,7 @@ function validateUserLogin() {
 	const _username = document.forms["loginform"]["username"].value;
 	const _password = document.forms["loginform"]["password"].value;
 	if (usersMap.has(_username) && usersMap.get(_username).password === _password) {
-		document.getElementById("loggedUser").innerHTML = `Logged User: ${_username}`;
+		userLabel.innerHTML = `Logged User: ${_username}`;
 		displayDiv('game');
 		document.forms['loginform'].reset();
 	}
