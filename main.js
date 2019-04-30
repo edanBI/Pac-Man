@@ -168,7 +168,7 @@ function resetGame() {
 		[4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4],
 		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 	];
-	ballsAmount=bA;
+	ballsAmount = bA;
 	audioGame.load();
 	xMnstr1 = 1;
 	yMnstr1 = 1;
@@ -181,6 +181,10 @@ function resetGame() {
 	countTime = 1;
 	countHeart = 1;
 	timeBonus = 0;
+	xLifepls = 50;
+	yLifepls = 50;
+	xTimePls = 50;
+	yTimePls = 50;
 }
 
 function newGame() {
@@ -632,11 +636,10 @@ function UpdatePosition() {
 		life++;
 		audioLifeBonus.play();
 		document.getElementById("lblLife").value = life;
-		//audioHamburger.play();
 		xLifepls = 50;
 		yLifepls = 50;
 	}
-	
+
 	if (shape.i == xTimePls && shape.j == yTimePls) {
 		timeBonus = 10;
 		audioTimeBonus.play();
