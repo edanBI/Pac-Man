@@ -53,7 +53,6 @@ var xHmbrgr = 14;
 var yHmbrgr = 14;
 
 const windows = document.getElementsByClassName("windows");
-
 class UserData {
 	constructor(username, password, firstname, lastname, email, birthday) {
 		this.username = username;
@@ -115,6 +114,7 @@ function validateUserLogin() {
 	const _username = document.forms["loginform"]["username"].value;
 	const _password = document.forms["loginform"]["password"].value;
 	if (usersMap.has(_username) && usersMap.get(_username).password === _password) {
+		document.getElementById("loggedUser").innerHTML = `Logged User: ${_username}`;
 		displayDiv('game');
 		document.forms['loginform'].reset();
 	}
