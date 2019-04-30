@@ -25,7 +25,6 @@ h1 {
 }
 
 #navbar {
-	padding: 3px 0 0 0;
 	display: flex;
 	/* flex-direction: column;
 	align-items: center; */
@@ -36,14 +35,16 @@ h1 {
 	text-decoration: none;
 }
 
-#navbar #buttons {
-	/* border: 3px red solid; */
+#buttons {
+	width: 35%;
+	padding: 0 -20px 0 0;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
-#navbar #logo {
-	/* border: 3px blue solid; */
-	/* width: 30%;
-	padding: 0 15%; */
+#logo {
+	padding: 0 20px 0 0; 
 }
 
 #welcome {
@@ -52,12 +53,20 @@ h1 {
 	align-items: center;
 }
 
-#welcome button {
-	width: 30%;
-	height: 50px;
+button {
 	background-color: black;
 	color: yellow;
 	font-family: 'Press Start 2P', cursive;
+}
+
+#welcome button, #navbar button {
+	width: 30%;
+	height: 50px;
+}
+
+#navbar button {
+	width: 120px;
+	height: 30px;	
 }
 
 #register form,
