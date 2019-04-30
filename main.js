@@ -62,6 +62,14 @@ var yTimePls = 50;
 var countTime = 1;
 var countHeart = 1;
 var timeBonus = 0;
+var upKey = 38;
+var downKey = 40;
+var rightKey = 39;
+var leftKey = 37;
+var u = 38;
+var d = 40;
+var r = 39;
+var l = 37;
 
 const windows = document.getElementsByClassName("windows");
 class UserData {
@@ -144,10 +152,10 @@ function saveSettings() {
 	color15 = document.getElementById("ball15pt").value;
 	color25 = document.getElementById("ball25pt").value;
 	dif = $("input[name='difficulty']:checked").val();
-	//up
-	//down
-	//left
-	//right
+	upKey = u;
+	downKey = d;
+	rightKey = r;
+	leftKey = l;
 }
 
 function resetGame() {
@@ -215,17 +223,17 @@ function randomsettings() {
 		ballsAmount = num1 - 9;
 	}
 	num2 = Math.floor(Math.random() * 10);
-	if (num2 < 2) {
+	if (num2 < 3) {
 		$('input:radio[name=difficulty]')[0].checked = true;
-	} else if (num2 < 4) {
-		$('input:radio[name=difficulty]')[1].checked = true;
 	} else if (num2 < 6) {
+		$('input:radio[name=difficulty]')[1].checked = true;
+	} else /*if (num2 < )*/ {
 		$('input:radio[name=difficulty]')[2].checked = true;
-	} else if (num2 < 8) {
+	}/* else if (num2 < 8) {
 		$('input:radio[name=difficulty]')[3].checked = true;
 	} else {
 		$('input:radio[name=difficulty]')[4].checked = true;
-	}
+	} */
 	document.getElementById("lblsetMonsterNum").value = monstersAmount;
 	document.getElementById("lblsetBallsNum").value = ballsAmount;
 	document.getElementById("lblsetTime").value = time_elapsed;
@@ -477,16 +485,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[upKey]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[downKey]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[leftKey]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[rightKey]) {
 		return 4;
 	}
 }
@@ -726,6 +734,23 @@ function UpdatePosition() {
 	if (x == 1 || x == 2 || x == 3 || x == 4)
 		pos = x
 	Draw();
+}
+document.getElementById("up").onkeydown = upkey;
+document.getElementById("down").onkeydown = downkey;
+document.getElementById("right").onkeydown = rightkey;
+document.getElementById("left").onkeydown = leftkey;
+
+function upkey(e) {
+	u = e.keyCode;
+}
+function downkey(e) {
+	d = e.keyCode;
+}
+function rightkey(e) {
+	r = e.keyCode;
+}
+function leftkey(e) {
+	l = e.keyCode;
 }
 
 // jQuery section
