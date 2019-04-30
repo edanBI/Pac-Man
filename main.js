@@ -1,6 +1,6 @@
 var context = canvas.getContext("2d");
 var shape = new Object();
-var diffcultyLvl = 600;
+var diffcultyLvl = 590;
 function diffcultyLevel(speed) {
 	diffcultyLvl = speed
 }
@@ -29,6 +29,7 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var gameTime = document.getElementById("lblsetTime").value;
+var gT = parseInt(gameTime);
 var dif = 590;
 var interval;
 var interval1;
@@ -403,6 +404,7 @@ function Start() {
 	}
 	score = 0;
 	life = 3;
+	gT = parseInt(gameTime);
 	pac_color = "yellow";
 	var food_remain = ballsAmount;
 	var pt15 = Math.floor(0.3 * food_remain);
@@ -660,7 +662,7 @@ function UpdatePosition() {
 		yTimePls = 50;
 	}
 	var currentTime = new Date();
-	time_elapsed = timeBonus + parseInt(gameTime) - Math.floor((currentTime - start_time) / 1000);
+	time_elapsed = timeBonus + gT - Math.floor((currentTime - start_time) / 1000);
 	if (life == 0) {
 		audioGame.pause();
 		audioLose.play();
@@ -721,6 +723,8 @@ function UpdatePosition() {
 			score -= 10;
 			audioGame.load();
 			audioGame.play();
+			start_time = new Date();
+			gT = time_elapsed;
 		}
 		keysDown = {};
 		addEventListener("keydown", function (e) {
