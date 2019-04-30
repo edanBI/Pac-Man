@@ -29,7 +29,7 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var gameTime = document.getElementById("lblsetTime").value;
-var dif = 600;
+var dif = 590;
 var interval;
 var interval1;
 var interval2;
@@ -461,9 +461,9 @@ function Start() {
 	addEventListener("keyup", function (e) {
 		keysDown[e.keyCode] = false;
 	}, false);
-	interval = setInterval(UpdatePosition, 200);
+	interval = setInterval(UpdatePosition, 180);
 	interval1 = setInterval(monstersMove, dif);
-	interval2 = setInterval(moveHamburger, 400);
+	interval2 = setInterval(moveHamburger, 410);
 }
 
 function findRandomEmptyCell(board) {
