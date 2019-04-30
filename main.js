@@ -34,23 +34,34 @@ var interval;
 var interval1;
 var interval2;
 var ballsAmount = document.getElementById("lblsetBallsNum").value;
+var bA = ballsAmount;
 var monstersAmount = document.getElementById("lblsetMonsterNum").value;
 var color5 = document.getElementById("ball5pt").value;
 var color15 = document.getElementById("ball15pt").value;
 var color25 = document.getElementById("ball25pt").value;
 var audioDie = new Audio('misc/die.mp3');
-var audioHamburger = new Audio('misc/eatghost.mp3');
+var audioHamburger = new Audio('misc/bonus.wav');
 var audioGame = new Audio('misc/pacmusic.mp3');
 var audioLose = new Audio('misc/lose.mp3');
+var audioEat = new Audio('misc/eat.mp3');
+var audioLifeBonus = new Audio('misc/lifebonus.mp3');
+var audioTimeBonus = new Audio('misc/timebonus.wav');
 var pos = 4;
 var xMnstr1 = 1;
 var yMnstr1 = 1;
-var xMnstr2 = 8000;
-var yMnstr2 = 8000;
-var xMnstr3 = 8000;
-var yMnstr3 = 8000;
+var xMnstr2 = 50;
+var yMnstr2 = 50;
+var xMnstr3 = 50;
+var yMnstr3 = 50;
 var xHmbrgr = 14;
 var yHmbrgr = 14;
+var xLifepls = 50;
+var yLifepls = 50;
+var xTimePls = 50;
+var yTimePls = 50;
+var countTime = 1;
+var countHeart = 1;
+var timeBonus = 0;
 
 const windows = document.getElementsByClassName("windows");
 class UserData {
@@ -122,13 +133,17 @@ function validateUserLogin() {
 }
 
 function saveSettings() {
-	monstersAmount = lblsetMonsterNum.value;
-	ballsAmount = lblsetBallsNum.value;
-	gameTime = lblsetTime.value;
-	color5 = ball5pt.value;
-	color15 = ball15pt.value;
-	color25 = ball25pt.value;
+	monstersAmount = document.getElementById("lblsetMonsterNum").value;
+	ballsAmount = document.getElementById("lblsetBallsNum").value;
+	gameTime = document.getElementById("lblsetTime").value;
+	color5 = document.getElementById("ball5pt").value;
+	color15 = document.getElementById("ball15pt").value;
+	color25 = document.getElementById("ball25pt").value;
 	dif = $("input[name='difficulty']:checked").val();
+	//up
+	//down
+	//left
+	//right
 }
 
 function resetGame() {
@@ -153,15 +168,19 @@ function resetGame() {
 		[4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4],
 		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 	];
+	ballsAmount=bA;
 	audioGame.load();
 	xMnstr1 = 1;
 	yMnstr1 = 1;
-	xMnstr2 = 8000;
-	yMnstr2 = 8000;
-	xMnstr3 = 8000;
-	yMnstr3 = 8000;
+	xMnstr2 = 50;
+	yMnstr2 = 50;
+	xMnstr3 = 50;
+	yMnstr3 = 50;
 	xHmbrgr = 14;
 	yHmbrgr = 14;
+	countTime = 1;
+	countHeart = 1;
+	timeBonus = 0;
 }
 
 function newGame() {
@@ -199,9 +218,9 @@ function randomsettings() {
 	} else {
 		$('input:radio[name=difficulty]')[4].checked = true;
 	}
-	lblsetMonsterNum.value = monstersAmount;
-	lblsetBallsNum.value = ballsAmount;
-	lblsetTime.value = time_elapsed;
+	document.getElementById("lblsetMonsterNum").value = monstersAmount;
+	document.getElementById("lblsetBallsNum").value = ballsAmount;
+	document.getElementById("lblsetTime").value = time_elapsed;
 }
 
 function leagelMove(posX, posY, monster) {
@@ -292,8 +311,11 @@ function monsterMove(posX, posY, monster) {
 
 function monstersMove() {
 	monsterMove(xMnstr1, yMnstr1, '1');
-	monsterMove(xMnstr2, yMnstr2, '2');
-	monsterMove(xMnstr3, yMnstr3, '3');
+	if (monstersAmount > 1) {
+		monsterMove(xMnstr2, yMnstr2, '2');
+	} if (monstersAmount > 2) {
+		monsterMove(xMnstr3, yMnstr3, '3');
+	}
 }
 
 function distance(posx, posy) {
@@ -434,7 +456,6 @@ function Start() {
 	interval = setInterval(UpdatePosition, 200);
 	interval1 = setInterval(monstersMove, dif);
 	interval2 = setInterval(moveHamburger, 400);
-
 }
 
 function findRandomEmptyCell(board) {
@@ -463,15 +484,16 @@ function GetKeyPressed() {
 }
 
 function Draw() {
-
 	canvas.width = canvas.width; //clean board
-	lblLife.value = life
-	lblScore.value = score;
-	lblTime.value = time_elapsed;
+	document.getElementById("lblLife").value = life;
+	document.getElementById("lblScore").value = score;
+	document.getElementById("lblTime").value = time_elapsed;
 	var image1 = document.getElementById("monster1");
 	var image2 = document.getElementById("monster2");
 	var image3 = document.getElementById("monster3");
 	var moving50pt = document.getElementById("hamburger");
+	var lifePls1 = document.getElementById("heart");
+	var timepls10sec = document.getElementById("clock");
 	for (var i = 0; i < 16; i++) {
 		for (var j = 0; j < 16; j++) {
 			var center = new Object();
@@ -533,15 +555,6 @@ function Draw() {
 					context.fillStyle = "black"; //color 
 					context.fill();
 				}
-				/*context.beginPath();
-				context.arc(center.x, center.y, 12, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-				context.lineTo(center.x, center.y);
-				context.fillStyle = pac_color; //color 
-				context.fill();
-				context.beginPath();
-				context.arc(center.x + 2, center.y - 7, 3, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color 
-				context.fill();*/
 			} else if (board[i][j] == 1) { //food
 				context.beginPath();
 				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
@@ -564,6 +577,8 @@ function Draw() {
 	context.drawImage(image2, 25 * xMnstr2, 25 * yMnstr2, 23, 23);
 	context.drawImage(image3, 25 * xMnstr3, 25 * yMnstr3, 23, 23);
 	context.drawImage(moving50pt, 25 * xHmbrgr, 25 * yHmbrgr, 23, 23);
+	context.drawImage(lifePls1, 25 * xLifepls, 25 * yLifepls, 23, 23);
+	context.drawImage(timepls10sec, 25 * xTimePls, 25 * yTimePls, 23, 23);
 }
 
 function UpdatePosition() {
@@ -592,12 +607,18 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] == 1) {
 		score += 5;
 		ballsAmount--;
+		audioEat.load();
+		audioEat.play();
 	} else if (board[shape.i][shape.j] == 2) {
 		score += 15;
 		ballsAmount--;
+		audioEat.load();
+		audioEat.play();
 	} else if (board[shape.i][shape.j] == 3) {
 		score += 25;
 		ballsAmount--;
+		audioEat.load();
+		audioEat.play();
 	}
 	if (shape.i == xHmbrgr && shape.j == yHmbrgr) {
 		score += 50;
@@ -607,9 +628,24 @@ function UpdatePosition() {
 		xHmbrgr = 50;
 
 	}
+	if (shape.i == xLifepls && shape.j == yLifepls) {
+		life++;
+		audioLifeBonus.play();
+		document.getElementById("lblLife").value = life;
+		//audioHamburger.play();
+		xLifepls = 50;
+		yLifepls = 50;
+	}
+	
+	if (shape.i == xTimePls && shape.j == yTimePls) {
+		timeBonus = 10;
+		audioTimeBonus.play();
+		document.getElementById("lblTime").value = time_elapsed;
+		xTimePls = 50;
+		yTimePls = 50;
+	}
 	var currentTime = new Date();
-	time_elapsed = gameTime - Math.floor((currentTime - start_time) / 1000);
-	Draw();
+	time_elapsed = timeBonus + parseInt(gameTime) - Math.floor((currentTime - start_time) / 1000);
 	if (life == 0) {
 		audioGame.pause();
 		audioLose.play();
@@ -617,6 +653,13 @@ function UpdatePosition() {
 		window.clearInterval(interval1);
 		window.alert("Game Over!");
 	}
+	if (life == 1 && countHeart == 1) {
+		countHeart--;
+		var only1LifeLeft = findRandomEmptyCell(board);
+		xLifepls = only1LifeLeft[0];
+		yLifepls = only1LifeLeft[1];
+	}
+
 	if (time_elapsed == 0) {
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
@@ -627,6 +670,12 @@ function UpdatePosition() {
 			audioGame.pause();
 			window.alert("We hava a winner!!!");
 		}
+	}
+	if (time_elapsed == 20 && countTime == 1) {
+		countTime--;
+		var only20SecLeft = findRandomEmptyCell(board);
+		xTimePls = only20SecLeft[0];
+		yTimePls = only20SecLeft[1];
 	}
 	if (ballsAmount == 0) {
 		audioGame.pause();
