@@ -501,23 +501,23 @@ function Draw() {
 	for (var i = 0; i < 16; i++) {
 		for (var j = 0; j < 16; j++) {
 			var center = new Object();
-			center.x = i * 25 + 12;
-			center.y = j * 25 + 12;
+			center.x = i * 33 + 15;
+			center.y = j * 33 + 15;
 			if (board[i][j] == 4) {
 				context.beginPath();
-				context.rect(center.x - 12, center.y - 12, 25, 25);
+				context.rect(center.x - 15, center.y - 15, 33, 33);
 				context.fillStyle = "blue"; //color 
 				context.fill();
 			} else if (board[i][j] == 0) { // pacman
 				if (pos == 1) //up
 				{
 					context.beginPath();
-					context.arc(center.x, center.y, 12, 1.65 * Math.PI, 1.35 * Math.PI); // half circle
+					context.arc(center.x + 2, center.y + 2, 13, 1.65 * Math.PI, 1.35 * Math.PI); // half circle
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color 
 					context.fill();
 					context.beginPath();
-					context.arc(center.x - 7, center.y + 2, 3, 0, 2 * Math.PI); // circle
+					context.arc(center.x - 5, center.y + 2, 3, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color 
 					context.fill();
 
@@ -525,12 +525,12 @@ function Draw() {
 				if (pos == 2) //down
 				{
 					context.beginPath();
-					context.arc(center.x, center.y, 12, 0.65 * Math.PI, 0.35 * Math.PI); // half circle
+					context.arc(center.x + 2, center.y + 2, 13, 0.65 * Math.PI, 0.35 * Math.PI); // half circle
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color 
 					context.fill();
 					context.beginPath();
-					context.arc(center.x - 7, center.y + 2, 3, 0, 2 * Math.PI); // circle
+					context.arc(center.x - 5, center.y + 2, 3, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color 
 					context.fill();
 
@@ -538,51 +538,51 @@ function Draw() {
 				if (pos == 3) // left
 				{
 					context.beginPath();
-					context.arc(center.x, center.y, 12, 1.15 * Math.PI, 0.85 * Math.PI); // half circle
+					context.arc(center.x + 2, center.y + 2, 13, 1.15 * Math.PI, 0.85 * Math.PI); // half circle
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color 
 					context.fill();
 					context.beginPath();
-					context.arc(center.x + 2, center.y - 7, 3, 0, 2 * Math.PI); // circle
+					context.arc(center.x + 2, center.y - 5, 3, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color 
 					context.fill();
 				}
 				if (pos == 4) // right
 				{
 					context.beginPath();
-					context.arc(center.x, center.y, 12, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+					context.arc(center.x + 2, center.y + 2, 13, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color 
 					context.fill();
 					context.beginPath();
-					context.arc(center.x + 2, center.y - 7, 3, 0, 2 * Math.PI); // circle
+					context.arc(center.x + 2, center.y - 5, 3, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color 
 					context.fill();
 				}
 			} else if (board[i][j] == 1) { //food
 				context.beginPath();
-				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
+				context.arc(center.x + 2, center.y + 2, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = color5; //color 
 				context.fill();
 			} else if (board[i][j] == 2) {
 				context.beginPath();
-				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
+				context.arc(center.x + 2, center.y + 2, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = color15; //color 
 				context.fill();
 			} else if (board[i][j] == 3) {
 				context.beginPath();
-				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
+				context.arc(center.x + 2, center.y + 2, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = color25; //color 
 				context.fill();
 			}
 		}
 	}
-	context.drawImage(image1, 25 * xMnstr1, 25 * yMnstr1, 23, 23);
-	context.drawImage(image2, 25 * xMnstr2, 25 * yMnstr2, 23, 23);
-	context.drawImage(image3, 25 * xMnstr3, 25 * yMnstr3, 23, 23);
-	context.drawImage(moving50pt, 25 * xHmbrgr, 25 * yHmbrgr, 23, 23);
-	context.drawImage(lifePls1, 25 * xLifepls, 25 * yLifepls, 23, 23);
-	context.drawImage(timepls10sec, 25 * xTimePls, 25 * yTimePls, 23, 23);
+	context.drawImage(image1, 33 * xMnstr1 + 2, 33 * yMnstr1 + 3, 30, 30);
+	context.drawImage(image2, 33 * xMnstr2 + 2, 33 * yMnstr2 + 3, 30, 30);
+	context.drawImage(image3, 33 * xMnstr3 + 2, 33 * yMnstr3 + 3, 30, 30);
+	context.drawImage(moving50pt, 33 * xHmbrgr + 2, 33 * yHmbrgr, 30, 30);
+	context.drawImage(lifePls1, 33 * xLifepls + 1, 33 * yLifepls + 1, 33, 33);
+	context.drawImage(timepls10sec, 33 * xTimePls + 3, 33 * yTimePls + 3, 27, 27);
 }
 
 function UpdatePosition() {
