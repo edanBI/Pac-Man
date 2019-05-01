@@ -23,6 +23,7 @@ var board = [
 	[4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4],
 	[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 ];
+var runn = false;
 var gameEnd = false;
 var score;
 var sound = true;
@@ -165,7 +166,7 @@ function muteMusic() {
 }
 
 function pauseGame() {
-	if (pause == false && gameEnd == false) {
+	if (pause == false && gameEnd == false && runn == false) {
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(interval2);
@@ -177,7 +178,7 @@ function pauseGame() {
 }
 
 function resumeGame() {
-	if (pause && gameEnd == false) {
+	if (pause && gameEnd == false && runn == false) {
 		interval = setInterval(UpdatePosition, 180);
 		interval1 = setInterval(monstersMove, dif);
 		interval2 = setInterval(moveHamburger, 410);
@@ -245,8 +246,12 @@ function resetGame() {
 }
 
 function newGame() {
-	resetGame();
-	canvasReady();
+	if (runn == false) {
+		resetGame();
+		runn = true;
+		canvasReady();
+	}
+	else return;
 }
 
 function randomsettings() {
@@ -437,6 +442,7 @@ function moveHamburger() {
 }
 
 function Start() {
+	runn = false;
 	audioGame.play();
 	if (monstersAmount > 1) {
 		xMnstr2 = 1;
@@ -707,14 +713,7 @@ function UpdatePosition() {
 	}
 	var currentTime = new Date();
 	time_elapsed = timeBonus + gT - Math.floor((currentTime - start_time) / 1000);
-	if (life == 0) {
-		audioGame.pause();
-		audioLose.play();
-		window.clearInterval(interval);
-		window.clearInterval(interval1);
-		window.alert("Game Over!");
-		//TIKON
-	}
+
 	if (life == 1 && countHeart == 1) {
 		countHeart--;
 		var only1LifeLeft = findRandomEmptyCell(board);
@@ -754,20 +753,20 @@ function UpdatePosition() {
 		audioGame.pause();
 		life--;
 		document.getElementById("lblLife").value = life;
-		xMnstr1 = 1;
-		yMnstr1 = 1;
-		if (monstersAmount > 1) {
-			xMnstr2 = 1;
-			yMnstr2 = 14;
-			if (monstersAmount > 2) {
-				xMnstr3 = 14;
-				yMnstr3 = 1;
-			}
-		}
-		var afterMnstr = findRandomEmptyCell(board);
-		shape.i = afterMnstr[0];
-		shape.j = afterMnstr[1];
 		if (life != 0) {
+			xMnstr1 = 1;
+			yMnstr1 = 1;
+			if (monstersAmount > 1) {
+				xMnstr2 = 1;
+				yMnstr2 = 14;
+				if (monstersAmount > 2) {
+					xMnstr3 = 14;
+					yMnstr3 = 1;
+				}
+			}
+			var afterMnstr = findRandomEmptyCell(board);
+			shape.i = afterMnstr[0];
+			shape.j = afterMnstr[1];
 			audioDie.play();
 			window.alert("ONE STRIKE LESS, BE CERFUL!");
 			//TIKON
@@ -776,6 +775,14 @@ function UpdatePosition() {
 			audioGame.play();
 			start_time = new Date();
 			gT = time_elapsed;
+		}
+		else {
+			audioGame.pause();
+			audioLose.play();
+			window.clearInterval(interval);
+			window.clearInterval(interval1);
+			window.alert("Game Over!");
+			//TIKON
 		}
 		keysDown = {};
 		addEventListener("keydown", function (e) {
