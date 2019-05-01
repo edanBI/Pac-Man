@@ -832,12 +832,51 @@ $(document).ready(function () {
 			password: {
 				required: true,
 				alphanumeric: true,
-				//minlength: 8
 			}
 		},
 		messages: {
 			username: " Enter a valid username.",
 			password: " Enter a valid password."
+		}
+	});
+	$("#settingsform").validate({
+		rules: {
+			ballsnumber: {
+				required: true,
+				digits: true,
+				min:50,
+				max:90
+			},
+			monstersnum: {
+				required: true,
+				min: 1,
+				max: 3,
+				digits: true,
+			},
+			gameTime: {
+				min:60,
+				required: true,
+				digits: true
+			},
+		},
+		messages: {
+			ballsnumber: {
+				required: " Enter the balls amount!",
+				min: " Minimum 50 balls!",
+				max: " Maximum 90 balls!",
+				digits: " Only digits allowed!"
+			},
+			monstersnum: {
+				required: " Enter the monsters amount!",
+				min: " Minimum 1 monster!",
+				max: " Maximum 3 monster!",
+				digits: " Only digits allowed!"
+			},
+			gameTime: {
+				required: " Enter the time for a game!",
+				min: " Minimum 60 second!",
+				digits: " Only digits allowed!"
+			},
 		}
 	});
 });
