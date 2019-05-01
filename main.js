@@ -24,6 +24,7 @@ var board = [
 	[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 ];
 var score;
+var sound = true;
 var life;
 var pac_color;
 var start_time;
@@ -144,6 +145,23 @@ function validateUserLogin() {
 	}
 	else alert(`User ${_username} with password ${_password} is not registered.`);
 }
+
+function muteMusic() {
+	audioDie.muted = sound;
+	audioHamburger.muted = sound;
+	audioGame.muted = sound;
+	audioLose.muted = sound;
+	audioEat.muted = sound;
+	audioLifeBonus.muted = sound;
+	audioTimeBonus.muted = sound;
+	if (sound) {
+		sound = false;
+	}
+	else {
+		sound = true;
+	}
+}
+
 
 function saveSettings() {
 	monstersAmount = document.getElementById("lblsetMonsterNum").value;
@@ -669,6 +687,7 @@ function UpdatePosition() {
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.alert("Game Over!");
+		//TIKON
 	}
 	if (life == 1 && countHeart == 1) {
 		countHeart--;
@@ -683,9 +702,11 @@ function UpdatePosition() {
 		if (score < 150) {
 			audioGame.pause();
 			window.alert("You can do better then " + score + " points");
+			//TIKON
 		} else {
 			audioGame.pause();
 			window.alert("We hava a winner!!!");
+			//TIKON
 		}
 	}
 	if (time_elapsed == 20 && countTime == 1) {
@@ -699,6 +720,7 @@ function UpdatePosition() {
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.alert("We have a Winner!");
+		//TIKON
 	}
 	if (shape.i == xMnstr1 && shape.j == yMnstr1 || shape.i == xMnstr2 && shape.j == yMnstr2 || shape.i == xMnstr3 && shape.j == yMnstr3) {
 		audioGame.pause();
@@ -720,6 +742,7 @@ function UpdatePosition() {
 		if (life != 0) {
 			audioDie.play();
 			window.alert("ONE STRIKE LESS, BE CERFUL!");
+			//TIKON
 			score -= 10;
 			audioGame.load();
 			audioGame.play();
