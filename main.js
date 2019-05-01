@@ -202,7 +202,9 @@ function resetGame() {
 
 function newGame() {
 	resetGame();
-	Start();
+	canvasReady();
+	console.log("newone");
+	//Start();
 }
 
 function randomsettings() {
@@ -393,6 +395,7 @@ function moveHamburger() {
 }
 
 function Start() {
+	console.log("go");
 	audioGame.play();
 	if (monstersAmount > 1) {
 		xMnstr2 = 1;
@@ -421,7 +424,6 @@ function Start() {
 			board[x][y] = 0;
 		}
 	}
-	start_time = new Date();
 	for (var i = 0; i < 16; i++) {
 		for (var j = 0; j < 16; j++) {
 			if (board[i][j] == 4) {
@@ -471,6 +473,7 @@ function Start() {
 	addEventListener("keyup", function (e) {
 		keysDown[e.keyCode] = false;
 	}, false);
+	start_time = new Date();
 	interval = setInterval(UpdatePosition, 180);
 	interval1 = setInterval(monstersMove, dif);
 	interval2 = setInterval(moveHamburger, 410);
@@ -757,6 +760,47 @@ function leftkey(e) {
 	l = e.keyCode;
 }
 
+function canvasReady() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.font = "bold 120px Verdana";
+	// Create gradient
+	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop("0", "magenta");
+	gradient.addColorStop("0.5", "blue");
+	gradient.addColorStop("1.0", "red");
+	// Fill with gradient
+	context.fillStyle = gradient;
+	context.fillText("Ready!", 58, 300);
+	setTimeout(canvasSet, 1500);
+}
+function canvasSet() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.font = "bold 120px Verdana";
+	// Create gradient
+	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop("0", "magenta");
+	gradient.addColorStop("0.5", "blue");
+	gradient.addColorStop("1.0", "red");
+	// Fill with gradient
+	context.fillStyle = gradient;
+	context.fillText("Set..", 140, 300);
+	setTimeout(canvasGo, 1500);
+}
+function canvasGo() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.font = "bold 120px Verdana";
+	console.log("go");
+	// Create gradient
+	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop("0", "magenta");
+	gradient.addColorStop("0.5", "blue");
+	gradient.addColorStop("1.0", "red");
+	// Fill with gradient
+	context.fillStyle = gradient;
+	context.fillText("Go!!!", 105, 300);
+	setTimeout(Start, 1500);
+}
+
 // jQuery section
 $(function () {
 	var $about = $("#about");
@@ -844,8 +888,8 @@ $(document).ready(function () {
 			ballsnumber: {
 				required: true,
 				digits: true,
-				min:50,
-				max:90
+				min: 50,
+				max: 90
 			},
 			monstersnum: {
 				required: true,
@@ -854,7 +898,7 @@ $(document).ready(function () {
 				digits: true,
 			},
 			gameTime: {
-				min:60,
+				min: 60,
 				required: true,
 				digits: true
 			},
