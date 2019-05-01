@@ -456,8 +456,8 @@ function Start() {
 	var pt5 = food_remain - pt15 - pt25;
 	var pacman_remain = 1;
 	while (pacman_remain == 1) {
-		var x = Math.floor((Math.random() * 6) + 6);
-		var y = Math.floor((Math.random() * 6) + 6);
+		var x = Math.floor((Math.random() * 5) + 5);
+		var y = Math.floor((Math.random() * 5) + 5);
 		if (board[x][y] == 7) {
 			shape.i = x;
 			shape.j = y;
@@ -813,9 +813,9 @@ function canvasReady() {
 	context.font = "bold 120px Verdana";
 	// Create gradient
 	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
-	gradient.addColorStop("0", "magenta");
-	gradient.addColorStop("0.5", "blue");
-	gradient.addColorStop("1.0", "red");
+	gradient.addColorStop("0", "yellow");
+	gradient.addColorStop("0.5", "white");
+	gradient.addColorStop("1.0", "yellow");
 	// Fill with gradient
 	context.fillStyle = gradient;
 	context.fillText("Ready!", 58, 300);
@@ -826,9 +826,9 @@ function canvasSet() {
 	context.font = "bold 120px Verdana";
 	// Create gradient
 	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
-	gradient.addColorStop("0", "magenta");
-	gradient.addColorStop("0.5", "blue");
-	gradient.addColorStop("1.0", "red");
+	gradient.addColorStop("0", "yellow");
+	gradient.addColorStop("0.5", "white");
+	gradient.addColorStop("1.0", "yellow");
 	// Fill with gradient
 	context.fillStyle = gradient;
 	context.fillText("Set..", 140, 300);
@@ -839,9 +839,9 @@ function canvasGo() {
 	context.font = "bold 120px Verdana";
 	// Create gradient
 	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
-	gradient.addColorStop("0", "magenta");
-	gradient.addColorStop("0.5", "blue");
-	gradient.addColorStop("1.0", "red");
+	gradient.addColorStop("0", "yellow");
+	gradient.addColorStop("0.5", "white");
+	gradient.addColorStop("1.0", "yellow");
 	// Fill with gradient
 	context.fillStyle = gradient;
 	context.fillText("Go!!!", 105, 300);
