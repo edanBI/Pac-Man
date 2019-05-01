@@ -23,8 +23,10 @@ var board = [
 	[4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4],
 	[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 ];
+var gameEnd = false;
 var score;
 var sound = true;
+var pause = false;
 var life;
 var pac_color;
 var start_time;
@@ -162,6 +164,29 @@ function muteMusic() {
 	}
 }
 
+function pauseGame() {
+	if (pause == false && gameEnd == false) {
+		window.clearInterval(interval);
+		window.clearInterval(interval1);
+		window.clearInterval(interval2);
+		audioGame.pause();
+		gT = time_elapsed;
+		pause = true;
+	} else
+		return;
+}
+
+function resumeGame() {
+	if (pause && gameEnd == false) {
+		interval = setInterval(UpdatePosition, 180);
+		interval1 = setInterval(monstersMove, dif);
+		interval2 = setInterval(moveHamburger, 410);
+		audioGame.play();
+		start_time = new Date();
+		pause = false;
+	} else
+		return;
+}
 
 function saveSettings() {
 	monstersAmount = document.getElementById("lblsetMonsterNum").value;
@@ -178,6 +203,7 @@ function saveSettings() {
 }
 
 function resetGame() {
+	gameEnd = false;
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(interval2);
@@ -697,6 +723,7 @@ function UpdatePosition() {
 	}
 
 	if (time_elapsed == 0) {
+		gameEnd = true;
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		if (score < 150) {
@@ -716,6 +743,7 @@ function UpdatePosition() {
 		yTimePls = only20SecLeft[1];
 	}
 	if (ballsAmount == 0) {
+		gameEnd = true;
 		audioGame.pause();
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
