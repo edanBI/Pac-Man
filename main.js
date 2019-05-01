@@ -147,7 +147,7 @@ function validateUserLogin() {
 
 function saveSettings() {
 	monstersAmount = document.getElementById("lblsetMonsterNum").value;
-	ballsAmount = document.getElementById("lblsetBallsNum").value;
+	bA = document.getElementById("lblsetBallsNum").value;
 	gameTime = document.getElementById("lblsetTime").value;
 	color5 = document.getElementById("ball5pt").value;
 	color15 = document.getElementById("ball15pt").value;
@@ -203,8 +203,6 @@ function resetGame() {
 function newGame() {
 	resetGame();
 	canvasReady();
-	console.log("newone");
-	//Start();
 }
 
 function randomsettings() {
@@ -395,7 +393,6 @@ function moveHamburger() {
 }
 
 function Start() {
-	console.log("go");
 	audioGame.play();
 	if (monstersAmount > 1) {
 		xMnstr2 = 1;
@@ -789,7 +786,6 @@ function canvasSet() {
 function canvasGo() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	context.font = "bold 120px Verdana";
-	console.log("go");
 	// Create gradient
 	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
 	gradient.addColorStop("0", "magenta");
@@ -798,7 +794,7 @@ function canvasGo() {
 	// Fill with gradient
 	context.fillStyle = gradient;
 	context.fillText("Go!!!", 105, 300);
-	setTimeout(Start, 1500);
+	setTimeout(Start, 800);
 }
 
 // jQuery section
