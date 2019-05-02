@@ -673,6 +673,7 @@ function UpdatePosition() {
 			shape.i++;
 		}
 	}
+	Draw();
 	if (board[shape.i][shape.j] == 1) {
 		score += 5;
 		ballsAmount--;
@@ -766,8 +767,12 @@ function UpdatePosition() {
 				}
 			}
 			var afterMnstr = findRandomEmptyCell(board);
+			while ((afterMnstr[0] < 4 || afterMnstr[0] > 11) || (afterMnstr[1] < 4 || afterMnstr[1] > 11)) {
+				afterMnstr = findRandomEmptyCell(board);
+			}
 			shape.i = afterMnstr[0];
 			shape.j = afterMnstr[1];
+			board[afterMnstr[0]][afterMnstr[1]] = 0;
 			audioDie.play();
 			window.alert("ONE STRIKE LESS, BE CERFUL!");
 			//TIKON
@@ -805,15 +810,19 @@ document.getElementById("left").onkeydown = leftkey;
 
 function upkey(e) {
 	u = e.keyCode;
+	document.getElementById("up").value = e.code;
 }
 function downkey(e) {
 	d = e.keyCode;
+	document.getElementById("down").value = e.code;
 }
 function rightkey(e) {
 	r = e.keyCode;
+	document.getElementById("right").value = e.code;
 }
 function leftkey(e) {
 	l = e.keyCode;
+	document.getElementById("left").value = e.code;
 }
 
 function canvasReady() {

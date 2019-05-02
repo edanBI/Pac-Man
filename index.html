@@ -139,28 +139,20 @@
                             <col style="width:50%; display:flex; justify-content: center;">
                         </colgroup>
                         <th colspan="2" style="text-align: left; text-decoration: underline"><label>Choose Game
-                                Keys</label>
+                                Keys</label><br><br>
                         </th>
                         <tr>
-                            <td class="leftCol"><label>Up key</label> &nbsp;&nbsp;&nbsp; <input type="text" id="up"
-                                    size="1" maxlength="1" /></td>
-                            <td class="rightCol"><label>Down key</label> &nbsp; <input type="text" id="down" size="1"
-                                    maxlength="1" /></td>
+                            <td class="leftCol"><label>Up key</label><br><br><input type="text" id="up"
+                                    size="9" /><br><br></td>
+                            <td class="rightCol"><label>Down key</label><br><br><input type="text" id="down"
+                                    size="9" /><br><br></td>
                         </tr>
-                        <!--<tr>
-                            <td class="leftCol"><label>Down key</label></td>
-                            <td class="rightCol"><input type="text" id="down" size="1" /></td>
-                        </tr>-->
                         <tr>
-                            <td class="leftCol"> <label>Left key</label> &nbsp; <input type="text" id="left" size="1"
-                                    maxlength="1" /></td>
-                            <td class="rightCol"><label>Right key</label> &nbsp;&nbsp; <input type="text" id="right"
-                                    size="1" maxlength="1" /></td>
+                            <td class="leftCol"> <label>Left key</label><br><br><input type="text" id="left" size="9" />
+                            </td>
+                            <td class="rightCol"><label>Right key</label><br><br><input type="text" id="right"
+                                    size="9" /></td>
                         </tr>
-                        <!--<tr>
-                            <td class="leftCol"><label>Left key</label></td>
-                            <td class="rightCol"></td>
-                        </tr>-->
                         <tr>
                             <td class="leftCol"><label>Amount of Balls<br> (50-90)</label></td>
                             <td class="rightCol"><input type="text" class="setform" id="lblsetBallsNum"
@@ -177,14 +169,8 @@
                                 <ul>
                                     <li><input type="radio" name="difficulty" onclick="diffcultyLevel(this.value)"
                                             value="590" checked>Beginner</li>
-                                    <!--<li><input type="radio" name="difficulty" onclick="diffcultyLevel(this.value)"
-                                            value="450">Amateur
-                                    </li>-->
                                     <li><input type="radio" name="difficulty" onclick="diffcultyLevel(this.value)"
                                             value="375">Professional</li>
-                                    <!--<li><input type="radio" name="difficulty" onclick="diffcultyLevel(this.value)"
-                                            value="310">World
-                                        Class</li>-->
                                     <li><input type="radio" name="difficulty" onclick="diffcultyLevel(this.value)"
                                             value="230">Expert
                                     </li><br>
@@ -215,16 +201,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="leftCol"><label>For Random Settings </label></td>
-                            <td class="rightCol"><input type="button" class="settingButton" value="Click here"
-                                    onclick="randomsettings()"></td>
-                        </tr>
-                        <tr>
-                            <td class="leftCol"><input type="button" class="settingButton" id="saveSetting" value="Save"
-                                    onclick="saveSettings()"></td>
-                            <td class="rightCol"> <input type="button" class="settingButton" id="newgame"
-                                    value="New Game" onclick="newGame()">
-                            </td>
+                            <td class="leftCol"><input type="button" class="settingButton" value="Randomise Settings"
+                                onclick="randomsettings()"></td>
+                            <td class="rightCol"><input type="button" class="settingButton" id="saveSetting" value="Save"
+                                onclick="saveSettings()"></td>
                         </tr>
                         <tr>
                             <td>
@@ -246,34 +226,42 @@
                 <canvas id="canvas" height="530" width="530"></canvas>
             </div>
             <div class="column right">
-                SCORE&nbsp;
-                <input id="lblScore" type="text" size="4" disabled />
+                SCORE &nbsp;<input id="lblScore" type="text" size="4" disabled />
                 <br><br>
-                TIME&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="lblTime" type="text" size="4" disabled />
+                TIME &nbsp;&nbsp;<input id="lblTime" type="text" size="4" disabled />
                 <br><br>
-                LIFE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="lblLife" type="text" size="4" disabled>
+                LIFE &nbsp;&nbsp;<input id="lblLife" type="text" size="4" disabled>
                 <br>
                 <br>
                 <br>
                 <br>
                 <table>
                     <tr>
-                        <td class="leftCol">
+                        <td>
+                            <input type="button" class="settingButton" id="newgame" value="New Game"
+                                onclick="newGame()">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <input type="button" class="settingButton" id="pausegame" value="Pause Game"
                                 onclick="pauseGame()">
+                            <br>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <input type="button" class="settingButton" id="resumegame" value="Resume Game"
                                 onclick="resumeGame()">
+                            <br>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <input type="button" class="settingButton" id="newgame" value="Mute Sound"
                                 onclick="muteMusic()">
+                            <br>
                         </td>
                     </tr>
                 </table>
