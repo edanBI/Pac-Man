@@ -735,6 +735,7 @@ function UpdatePosition() {
 		gameEnd = true;
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
+		window.clearInterval(interval2);
 		if (score < 150) {
 			audioGame.pause();
 			window.alert("You can do better then " + score + " points");
@@ -758,6 +759,7 @@ function UpdatePosition() {
 		audioWin.play();
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
+		window.clearInterval(interval2);
 		window.alert("We have a Winner!");
 		//TIKON
 	}
@@ -797,6 +799,7 @@ function UpdatePosition() {
 			audioLose.play();
 			window.clearInterval(interval);
 			window.clearInterval(interval1);
+			window.clearInterval(interval2);
 			window.alert("Game Over!");
 			//TIKON
 		}
