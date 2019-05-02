@@ -891,6 +891,31 @@ $(function () {
 	});
 });
 
+$(function () {
+	var $instructions = $("#instructions");
+	var $gameinstructions = $("#gameinstructions");
+
+	$instructions.dialog({
+		autoOpen: false,
+		modal: true,
+		width: 700,
+		height: 530,
+		resizable: false,
+		open: function () {
+			jQuery('.ui-widget-overlay').bind('click', function () {
+				$instructions.dialog('close');
+			})
+		},
+		close: function () {
+			$gameinstructions.prop('disabled', false);
+		}
+	});
+	$gameinstructions.click(function () {
+		$(this).prop('disabled', true);
+		$instructions.dialog("open");
+	});
+});
+
 $(document).ready(function () {
 	// this will happens AFTER the page has finished loading
 	$("#registerform").validate({

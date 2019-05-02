@@ -93,11 +93,11 @@
                         <td><input type="password" class="regform" name="password" required></td>
                     </tr>
                     <tr>
-                        <td><label>FirstName:</label></td>
+                        <td><label>First Name:</label></td>
                         <td><input type="text" class="regform" name="firstname" required> </td>
                     </tr>
                     <tr>
-                        <td><label>LastName:</label></td>
+                        <td><label>Last Name:</label></td>
                         <td><input type="text" class="regform" name="lastname" required> </td>
                     </tr>
                     <tr>
@@ -149,19 +149,24 @@
                         </tr>
                         <tr>
                             <td class="leftCol"> <label>Left key</label><br><br><input type="text" id="left" size="9" />
-                            </td>
+                                <br><br></td>
                             <td class="rightCol"><label>Right key</label><br><br><input type="text" id="right"
-                                    size="9" /></td>
+                                    size="9"/><br><br></td>
                         </tr>
                         <tr>
-                            <td class="leftCol"><label>Amount of Balls<br> (50-90)</label></td>
+                            <td class="leftCol"><label>Amount of Balls<br></label></td>
                             <td class="rightCol"><input type="text" class="setform" id="lblsetBallsNum"
-                                    name="ballsnumber" size="4" value="90" required></td>
+                                    name="ballsnumber" size="3" value="90" required></td>
                         </tr>
                         <tr>
-                            <td class="leftCol"><label>Amount of Monsters <br> (1-3) </label></td>
+                            <td class="leftCol"><label>Amount of Monsters<br></label></td>
                             <td class="rightCol"><input type="number" class="setform" id="lblsetMonsterNum"
-                                    name="monstersnum" value="1" required style="width:50%;"></td>
+                                    name="monstersnum" value="1" required style="width:30%;"></td>
+                        </tr>
+                        <tr>
+                            <td class="leftCol"><label>Time For Game</label></td>
+                            <td class="rightCol"><input type="number" class="setform" id="lblsetTime" name="gameTime"
+                                    size="4" value="60" required style="width:30%;"></td>
                         </tr>
                         <tr>
                             <td class="leftCol"><label>Difficulty Level:</label></td>
@@ -172,15 +177,9 @@
                                     <li><input type="radio" name="difficulty" onclick="diffcultyLevel(this.value)"
                                             value="375">Professional</li>
                                     <li><input type="radio" name="difficulty" onclick="diffcultyLevel(this.value)"
-                                            value="230">Expert
-                                    </li><br>
+                                            value="230">Expert</li><br>
                                 </ul>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="leftCol"><label>Time For Game (Sec)</label></td>
-                            <td class="rightCol"><input type="number" class="setform" id="lblsetTime" name="gameTime"
-                                    size="4" value="60" required></td>
                         </tr>
                         <tr>
                             <td class="leftCol"><label>5 Points Ball Color</label></td>
@@ -189,7 +188,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="leftCol"><label>15 Points Ball Color </label></td>
+                            <td class="leftCol"><label>15 Points Ball Color</label></td>
                             <td class="rightCol"><input type="color" class="setform" id="ball15pt" name="15ptballs"
                                     value="#00ff00" required>
                             </td>
@@ -202,14 +201,9 @@
                         </tr>
                         <tr>
                             <td class="leftCol"><input type="button" class="settingButton" value="Randomise Settings"
-                                onclick="randomsettings()"></td>
-                            <td class="rightCol"><input type="button" class="settingButton" id="saveSetting" value="Save"
-                                onclick="saveSettings()"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label style="color: aquamarine">DON'T FORGET TO SAVE!</label>
-                            </td>
+                                    onclick="randomsettings()"></td>
+                            <td class="rightCol"><input type="button" class="settingButton" id="saveSetting"
+                                    value="Save" onclick="saveSettings()"></td>
                         </tr>
                     </table>
 
@@ -264,6 +258,12 @@
                             <br>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <input type="button" class="settingButton" id="gameinstructions" value="Game Instructions">
+                            <br>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -281,6 +281,58 @@
                 no problems! easy peasy of a game ;)
             </ul>
         </div>
+
+        <div id="instructions" title="Game Instructions">
+            <p>Game Goal: <br>
+                Get the highest score by eating as many balls or other objects(we will explain about it later), whithout
+                get
+                cought by the monsters, within the time frame you have.
+            </p>
+            <p>
+                Game Board contains:
+                <ul>
+                    <li><img width="20" height="20" src="misc/favicon-32x32.png"> - You, the Pac-Man.</li>
+                    <li><img width="20" height="20" src="misc/monster1.png">
+                        <img width="20" height="20" src="misc/monster2.png">
+                        <img width="20" height="20" src="misc/monster3.png"> - Monsters, try to avoid them! </li>
+                    <li>Balls-in diffrent colors, each ball you eat gives you different number of extra points.</li>
+                    <li><img width="20" height="20" src="misc/clock.png"> - Clock, will appear when there are 20 seconds
+                        remaining, and will give you extre 10 seconds for the game! </li>
+                    <li><img width="20" height="20" src="misc/heart.png"> - Heart, will appear when the player has only
+                        one
+                        more life remain, and will give you extra life for the game!</li>
+                    <li><img width="20" height="20" src="misc/hamburger.png"> - Hamburger, will give you extra 50 points
+                        if
+                        you will eat him.</li>
+                </ul>
+            </p>
+            <p>
+                Buttons:
+                <ul>
+                    <li>New Game - Start a new game, if you play already will rest the game and start new one</li>
+                    <li>Pause Game - Pause the game and the time.</li>
+                    <li>Resume Game - Resume the game if you pause it.</li>
+                    <li>Mute Sound - Turn Off the game sound, and turn it On if already muted.</li>
+                    <li>Save - Save the settings you choose and and will be in the next game.</li>
+                    <li>Randomise Settings - Change the settings randomly (need to save after randomising).</li>
+                </ul>
+            </p>
+            <p>
+                Settings:
+                <ul>
+                    <li>Game Keys - Choose your favorite keys to move with (default will be the up/down/right/left
+                        arrows).</li>
+                    <li>Amount of Balls - Decide how many balls you will need to collect (minimum 50 maximum 90).</li>
+                    <li>Amount of Monsters - Decide how many monsters you will need to avoid (minimum 1 maximum 3).</li>
+                    <li>Difficulty Level - Select the level of the game and you'll see how good you are (default
+                        Beginner).</li>
+                    <li>Time for Game - Decide how much time the game will last in seconds (minimum 60 seconds).</li>
+                    <li>Balls Color by Points - Choose the colors of the balls by their points in the game.</li>
+                </ul>
+            </p>
+            <p>Enjoy!</p>
+        </div>
+
     </div>
     <script type="text/javascript" src="main.js"></script>
 
