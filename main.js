@@ -205,6 +205,7 @@ function saveSettings() {
 
 function resetGame() {
 	gameEnd = false;
+	pause = false;
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(interval2);
