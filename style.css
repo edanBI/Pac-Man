@@ -161,6 +161,9 @@ button {
 .left,
 .right {
 	border: 6px rgb(125, 125, 255) dotted;
+	font-family: 'Press Start 2P', cursive;
+	font-size: 70%;
+
 }
 
 .left {
