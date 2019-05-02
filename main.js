@@ -38,6 +38,7 @@ var dif = 590;
 var interval;
 var interval1;
 var interval2;
+var interval3;
 var ballsAmount = document.getElementById("lblsetBallsNum").value;
 var bA = ballsAmount;
 var monstersAmount = document.getElementById("lblsetMonsterNum").value;
@@ -51,6 +52,7 @@ var audioLose = new Audio('misc/lose.mp3');
 var audioEat = new Audio('misc/eat.mp3');
 var audioLifeBonus = new Audio('misc/lifebonus.mp3');
 var audioTimeBonus = new Audio('misc/timebonus.wav');
+var audioWin = new Audio('misc/win.mp3');
 var pos = 4;
 var xMnstr1 = 1;
 var yMnstr1 = 1;
@@ -157,6 +159,7 @@ function muteMusic() {
 	audioEat.muted = sound;
 	audioLifeBonus.muted = sound;
 	audioTimeBonus.muted = sound;
+	audioWin.muted = sound;
 	if (sound) {
 		sound = false;
 	}
@@ -170,6 +173,7 @@ function pauseGame() {
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(interval2);
+		window.clearInterval(interval3);
 		audioGame.pause();
 		gT = time_elapsed;
 		pause = true;
@@ -182,6 +186,7 @@ function resumeGame() {
 		interval = setInterval(UpdatePosition, 180);
 		interval1 = setInterval(monstersMove, dif);
 		interval2 = setInterval(moveHamburger, 410);
+		interval3 = setInterval(Draw, 30);
 		audioGame.play();
 		start_time = new Date();
 		pause = false;
@@ -209,6 +214,7 @@ function resetGame() {
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(interval2);
+	window.clearInterval(interval3);
 	board = [
 		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 		[4, 7, 7, 7, 7, 4, 7, 7, 7, 7, 7, 4, 7, 7, 7, 4],
@@ -525,6 +531,8 @@ function Start() {
 	interval = setInterval(UpdatePosition, 180);
 	interval1 = setInterval(monstersMove, dif);
 	interval2 = setInterval(moveHamburger, 410);
+	interval3 = setInterval(Draw, 30);
+
 }
 
 function findRandomEmptyCell(board) {
@@ -673,7 +681,7 @@ function UpdatePosition() {
 			shape.i++;
 		}
 	}
-	Draw();
+	//Draw();
 	if (board[shape.i][shape.j] == 1) {
 		score += 5;
 		ballsAmount--;
@@ -733,6 +741,7 @@ function UpdatePosition() {
 			//TIKON
 		} else {
 			audioGame.pause();
+			audioWin.play();
 			window.alert("We hava a winner!!!");
 			//TIKON
 		}
@@ -746,6 +755,7 @@ function UpdatePosition() {
 	if (ballsAmount == 0) {
 		gameEnd = true;
 		audioGame.pause();
+		audioWin.play();
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.alert("We have a Winner!");
@@ -801,7 +811,7 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	if (x == 1 || x == 2 || x == 3 || x == 4)
 		pos = x
-	Draw();
+	//Draw();
 }
 document.getElementById("up").onkeydown = upkey;
 document.getElementById("down").onkeydown = downkey;
