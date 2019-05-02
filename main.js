@@ -1,6 +1,6 @@
 var context = canvas.getContext("2d");
 var shape = new Object();
-var diffcultyLvl = 600;
+var diffcultyLvl = 590;
 function diffcultyLevel(speed) {
 	diffcultyLvl = speed
 }
@@ -23,12 +23,17 @@ var board = [
 	[4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 4],
 	[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 ];
+var runn = false;
+var gameEnd = false;
 var score;
+var sound = true;
+var pause = false;
 var life;
 var pac_color;
 var start_time;
 var time_elapsed;
 var gameTime = document.getElementById("lblsetTime").value;
+var gT = parseInt(gameTime);
 var dif = 590;
 var interval;
 var interval1;
@@ -62,6 +67,14 @@ var yTimePls = 50;
 var countTime = 1;
 var countHeart = 1;
 var timeBonus = 0;
+var upKey = 38;
+var downKey = 40;
+var rightKey = 39;
+var leftKey = 37;
+var u = 38;
+var d = 40;
+var r = 39;
+var l = 37;
 
 const windows = document.getElementsByClassName("windows");
 class UserData {
@@ -136,21 +149,63 @@ function validateUserLogin() {
 	else alert(`User ${_username} with password ${_password} is not registered.`);
 }
 
+function muteMusic() {
+	audioDie.muted = sound;
+	audioHamburger.muted = sound;
+	audioGame.muted = sound;
+	audioLose.muted = sound;
+	audioEat.muted = sound;
+	audioLifeBonus.muted = sound;
+	audioTimeBonus.muted = sound;
+	if (sound) {
+		sound = false;
+	}
+	else {
+		sound = true;
+	}
+}
+
+function pauseGame() {
+	if (pause == false && gameEnd == false && runn == false) {
+		window.clearInterval(interval);
+		window.clearInterval(interval1);
+		window.clearInterval(interval2);
+		audioGame.pause();
+		gT = time_elapsed;
+		pause = true;
+	} else
+		return;
+}
+
+function resumeGame() {
+	if (pause && gameEnd == false && runn == false) {
+		interval = setInterval(UpdatePosition, 180);
+		interval1 = setInterval(monstersMove, dif);
+		interval2 = setInterval(moveHamburger, 410);
+		audioGame.play();
+		start_time = new Date();
+		pause = false;
+	} else
+		return;
+}
+
 function saveSettings() {
 	monstersAmount = document.getElementById("lblsetMonsterNum").value;
-	ballsAmount = document.getElementById("lblsetBallsNum").value;
+	bA = document.getElementById("lblsetBallsNum").value;
 	gameTime = document.getElementById("lblsetTime").value;
 	color5 = document.getElementById("ball5pt").value;
 	color15 = document.getElementById("ball15pt").value;
 	color25 = document.getElementById("ball25pt").value;
 	dif = $("input[name='difficulty']:checked").val();
-	//up
-	//down
-	//left
-	//right
+	upKey = u;
+	downKey = d;
+	rightKey = r;
+	leftKey = l;
 }
 
 function resetGame() {
+	gameEnd = false;
+	pause = false;
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(interval2);
@@ -192,8 +247,12 @@ function resetGame() {
 }
 
 function newGame() {
-	resetGame();
-	Start();
+	if (runn == false) {
+		resetGame();
+		runn = true;
+		canvasReady();
+	}
+	else return;
 }
 
 function randomsettings() {
@@ -215,17 +274,17 @@ function randomsettings() {
 		ballsAmount = num1 - 9;
 	}
 	num2 = Math.floor(Math.random() * 10);
-	if (num2 < 2) {
+	if (num2 < 3) {
 		$('input:radio[name=difficulty]')[0].checked = true;
-	} else if (num2 < 4) {
-		$('input:radio[name=difficulty]')[1].checked = true;
 	} else if (num2 < 6) {
+		$('input:radio[name=difficulty]')[1].checked = true;
+	} else /*if (num2 < )*/ {
 		$('input:radio[name=difficulty]')[2].checked = true;
-	} else if (num2 < 8) {
+	}/* else if (num2 < 8) {
 		$('input:radio[name=difficulty]')[3].checked = true;
 	} else {
 		$('input:radio[name=difficulty]')[4].checked = true;
-	}
+	} */
 	document.getElementById("lblsetMonsterNum").value = monstersAmount;
 	document.getElementById("lblsetBallsNum").value = ballsAmount;
 	document.getElementById("lblsetTime").value = time_elapsed;
@@ -384,6 +443,7 @@ function moveHamburger() {
 }
 
 function Start() {
+	runn = false;
 	audioGame.play();
 	if (monstersAmount > 1) {
 		xMnstr2 = 1;
@@ -395,6 +455,7 @@ function Start() {
 	}
 	score = 0;
 	life = 3;
+	gT = parseInt(gameTime);
 	pac_color = "yellow";
 	var food_remain = ballsAmount;
 	var pt15 = Math.floor(0.3 * food_remain);
@@ -402,8 +463,8 @@ function Start() {
 	var pt5 = food_remain - pt15 - pt25;
 	var pacman_remain = 1;
 	while (pacman_remain == 1) {
-		var x = Math.floor((Math.random() * 6) + 6);
-		var y = Math.floor((Math.random() * 6) + 6);
+		var x = Math.floor((Math.random() * 5) + 5);
+		var y = Math.floor((Math.random() * 5) + 5);
 		if (board[x][y] == 7) {
 			shape.i = x;
 			shape.j = y;
@@ -411,7 +472,6 @@ function Start() {
 			board[x][y] = 0;
 		}
 	}
-	start_time = new Date();
 	for (var i = 0; i < 16; i++) {
 		for (var j = 0; j < 16; j++) {
 			if (board[i][j] == 4) {
@@ -461,6 +521,7 @@ function Start() {
 	addEventListener("keyup", function (e) {
 		keysDown[e.keyCode] = false;
 	}, false);
+	start_time = new Date();
 	interval = setInterval(UpdatePosition, 180);
 	interval1 = setInterval(monstersMove, dif);
 	interval2 = setInterval(moveHamburger, 410);
@@ -477,16 +538,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[upKey]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[downKey]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[leftKey]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[rightKey]) {
 		return 4;
 	}
 }
@@ -652,14 +713,8 @@ function UpdatePosition() {
 		yTimePls = 50;
 	}
 	var currentTime = new Date();
-	time_elapsed = timeBonus + parseInt(gameTime) - Math.floor((currentTime - start_time) / 1000);
-	if (life == 0) {
-		audioGame.pause();
-		audioLose.play();
-		window.clearInterval(interval);
-		window.clearInterval(interval1);
-		window.alert("Game Over!");
-	}
+	time_elapsed = timeBonus + gT - Math.floor((currentTime - start_time) / 1000);
+
 	if (life == 1 && countHeart == 1) {
 		countHeart--;
 		var only1LifeLeft = findRandomEmptyCell(board);
@@ -668,14 +723,17 @@ function UpdatePosition() {
 	}
 
 	if (time_elapsed == 0) {
+		gameEnd = true;
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		if (score < 150) {
 			audioGame.pause();
 			window.alert("You can do better then " + score + " points");
+			//TIKON
 		} else {
 			audioGame.pause();
 			window.alert("We hava a winner!!!");
+			//TIKON
 		}
 	}
 	if (time_elapsed == 20 && countTime == 1) {
@@ -685,34 +743,47 @@ function UpdatePosition() {
 		yTimePls = only20SecLeft[1];
 	}
 	if (ballsAmount == 0) {
+		gameEnd = true;
 		audioGame.pause();
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.alert("We have a Winner!");
+		//TIKON
 	}
 	if (shape.i == xMnstr1 && shape.j == yMnstr1 || shape.i == xMnstr2 && shape.j == yMnstr2 || shape.i == xMnstr3 && shape.j == yMnstr3) {
 		audioGame.pause();
 		life--;
 		document.getElementById("lblLife").value = life;
-		xMnstr1 = 1;
-		yMnstr1 = 1;
-		if (monstersAmount > 1) {
-			xMnstr2 = 1;
-			yMnstr2 = 14;
-			if (monstersAmount > 2) {
-				xMnstr3 = 14;
-				yMnstr3 = 1;
-			}
-		}
-		var afterMnstr = findRandomEmptyCell(board);
-		shape.i = afterMnstr[0];
-		shape.j = afterMnstr[1];
 		if (life != 0) {
+			xMnstr1 = 1;
+			yMnstr1 = 1;
+			if (monstersAmount > 1) {
+				xMnstr2 = 1;
+				yMnstr2 = 14;
+				if (monstersAmount > 2) {
+					xMnstr3 = 14;
+					yMnstr3 = 1;
+				}
+			}
+			var afterMnstr = findRandomEmptyCell(board);
+			shape.i = afterMnstr[0];
+			shape.j = afterMnstr[1];
 			audioDie.play();
 			window.alert("ONE STRIKE LESS, BE CERFUL!");
+			//TIKON
 			score -= 10;
 			audioGame.load();
 			audioGame.play();
+			start_time = new Date();
+			gT = time_elapsed;
+		}
+		else {
+			audioGame.pause();
+			audioLose.play();
+			window.clearInterval(interval);
+			window.clearInterval(interval1);
+			window.alert("Game Over!");
+			//TIKON
 		}
 		keysDown = {};
 		addEventListener("keydown", function (e) {
@@ -726,6 +797,63 @@ function UpdatePosition() {
 	if (x == 1 || x == 2 || x == 3 || x == 4)
 		pos = x
 	Draw();
+}
+document.getElementById("up").onkeydown = upkey;
+document.getElementById("down").onkeydown = downkey;
+document.getElementById("right").onkeydown = rightkey;
+document.getElementById("left").onkeydown = leftkey;
+
+function upkey(e) {
+	u = e.keyCode;
+}
+function downkey(e) {
+	d = e.keyCode;
+}
+function rightkey(e) {
+	r = e.keyCode;
+}
+function leftkey(e) {
+	l = e.keyCode;
+}
+
+function canvasReady() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.font = "bold 120px Verdana";
+	// Create gradient
+	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop("0", "yellow");
+	gradient.addColorStop("0.5", "white");
+	gradient.addColorStop("1.0", "yellow");
+	// Fill with gradient
+	context.fillStyle = gradient;
+	context.fillText("Ready!", 58, 300);
+	setTimeout(canvasSet, 1500);
+}
+function canvasSet() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.font = "bold 120px Verdana";
+	// Create gradient
+	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop("0", "yellow");
+	gradient.addColorStop("0.5", "white");
+	gradient.addColorStop("1.0", "yellow");
+	// Fill with gradient
+	context.fillStyle = gradient;
+	context.fillText("Set..", 140, 300);
+	setTimeout(canvasGo, 1500);
+}
+function canvasGo() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.font = "bold 120px Verdana";
+	// Create gradient
+	var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+	gradient.addColorStop("0", "yellow");
+	gradient.addColorStop("0.5", "white");
+	gradient.addColorStop("1.0", "yellow");
+	// Fill with gradient
+	context.fillStyle = gradient;
+	context.fillText("Go!!!", 105, 300);
+	setTimeout(Start, 800);
 }
 
 // jQuery section
@@ -803,12 +931,51 @@ $(document).ready(function () {
 			password: {
 				required: true,
 				alphanumeric: true,
-				//minlength: 8
 			}
 		},
 		messages: {
 			username: " Enter a valid username.",
 			password: " Enter a valid password."
+		}
+	});
+	$("#settingsform").validate({
+		rules: {
+			ballsnumber: {
+				required: true,
+				digits: true,
+				min: 50,
+				max: 90
+			},
+			monstersnum: {
+				required: true,
+				min: 1,
+				max: 3,
+				digits: true,
+			},
+			gameTime: {
+				min: 60,
+				required: true,
+				digits: true
+			},
+		},
+		messages: {
+			ballsnumber: {
+				required: " Enter the balls amount!",
+				min: " Minimum 50 balls!",
+				max: " Maximum 90 balls!",
+				digits: " Only digits allowed!"
+			},
+			monstersnum: {
+				required: " Enter the monsters amount!",
+				min: " Minimum 1 monster!",
+				max: " Maximum 3 monster!",
+				digits: " Only digits allowed!"
+			},
+			gameTime: {
+				required: " Enter the time for a game!",
+				min: " Minimum 60 second!",
+				digits: " Only digits allowed!"
+			},
 		}
 	});
 });
