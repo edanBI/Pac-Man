@@ -650,9 +650,9 @@ function Draw() {
 			}
 		}
 	}
-	context.drawImage(image1, 33 * xMnstr1 + 2, 33 * yMnstr1 + 3, 30, 30);
-	context.drawImage(image2, 33 * xMnstr2 + 2, 33 * yMnstr2 + 3, 30, 30);
-	context.drawImage(image3, 33 * xMnstr3 + 2, 33 * yMnstr3 + 3, 30, 30);
+	context.drawImage(image1, 33 * xMnstr1 + 2, 33 * yMnstr1 + 3, 25, 30);
+	context.drawImage(image2, 33 * xMnstr2 + 2, 33 * yMnstr2 + 3, 25, 30);
+	context.drawImage(image3, 33 * xMnstr3 + 2, 33 * yMnstr3 + 3, 25, 30);
 	context.drawImage(moving50pt, 33 * xHmbrgr + 2, 33 * yHmbrgr, 30, 30);
 	context.drawImage(lifePls1, 33 * xLifepls + 1, 33 * yLifepls + 1, 33, 33);
 	context.drawImage(timepls10sec, 33 * xTimePls + 3, 33 * yTimePls + 3, 27, 27);
