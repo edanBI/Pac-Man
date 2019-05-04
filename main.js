@@ -262,6 +262,7 @@ function newGame() {
 }
 
 function randomsettings() {
+	debugger;
 	num1 = Math.floor(Math.random() * 100);
 	monstersAmount = 3;
 	time_elapsed = num1 * 3;
