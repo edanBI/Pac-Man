@@ -743,7 +743,7 @@ function UpdatePosition() {
 		} else {
 			audioGame.pause();
 			audioWin.play();
-			window.alert("We hava a winner!!!");
+			window.alert("We have a winner!!!");
 			//TIKON
 		}
 	}

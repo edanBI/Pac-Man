@@ -44,11 +44,11 @@ h1 {
 #logSubmit {
 	font-size: 80%;
 	background-color: black;
-	padding: 10px;
+	padding: 0.9%;
 }
 
 .settingButton {
-	font-size: 50%;
+	font-size: 80%;
 	background-color: black;
 	padding: 5px;
 }
@@ -61,7 +61,6 @@ input[type="color"] {
 
 #navbar {
 	display: flex;
-	/* flex-direction: column; */
 	justify-content: space-between;
 	background-color: #fccf00;
 	align-items: center;
@@ -92,8 +91,7 @@ button {
 	font-family: 'Press Start 2P', cursive;
 }
 
-#welcome button,
-#navbar button {
+#welcome button {
 	width: 30%;
 	height: 50px;
 }
@@ -119,7 +117,6 @@ button {
 
 #register form,
 #login form {
-	/* margin: 5% 5%; */
 	padding: 2%;
 	border: 5px solid blue;
 	text-align: center;
@@ -139,8 +136,7 @@ button {
 
 #game {
 	width: 100%;
-	height: 100%;
-	padding: 25px 0;
+	padding: 15px 0 0 0;
 	/* display: flex; */
 	justify-content: space-around;
 	align-items: flex-start;
@@ -149,7 +145,7 @@ button {
 
 .middle,
 .left {
-	height: 520px;
+	/* height: 520px; */
 }
 
 .left h2 {
@@ -168,7 +164,7 @@ button {
 
 .left {
 	width: 25%;
-	padding: 0 5px;
+	padding: 0 5px -80px 5px;
 }
 
 .right {
