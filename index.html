@@ -132,13 +132,17 @@
         <!-- game page -->
         <div id="game" class="windows">
             <div class="column left">
-                <h2> SETTINGS </h2> <br><br>
                 <form id="settingsform">
                     <table style="width:100%">
                         <colgroup>
                             <col style="width:50%;">
                             <col style="width:50%; display:flex; justify-content: center;">
                         </colgroup>
+                        <tr>
+                            <th colspan="2" style="text-align: center">
+                                <h2> SETTINGS </h2> <br><br>
+                            </th>
+                        </tr>
                         <th colspan="2" style="text-align: left; text-decoration: underline"><label>Choose Game
                                 Keys</label><br><br>
                         </th>
@@ -152,7 +156,7 @@
                             <td class="leftCol"> <label>Left key</label><br><br><input type="text" id="left" size="9" />
                                 <br><br></td>
                             <td class="rightCol"><label>Right key</label><br><br><input type="text" id="right"
-                                    size="9"/><br><br></td>
+                                    size="9" /><br><br></td>
                         </tr>
                         <tr>
                             <td class="leftCol"><label>Amount of Balls<br></label></td>
@@ -201,6 +205,9 @@
                             </td>
                         </tr>
                         <tr>
+                            <td> <br> </td>
+                        </tr>
+                        <tr>
                             <td class="leftCol"><input type="button" class="settingButton" value="Random Settings"
                                     onclick="randomsettings()"></td>
                             <td class="rightCol"><input type="button" class="settingButton" id="saveSetting"
@@ -211,9 +218,9 @@
                 </form>
             </div>
             <div class="column middle">
-                <img id="monster1" width="60" height="60" style="display: none;" src="misc/edan.jpeg">
-                <img id="monster2" width="60" height="60" style="display: none;" src="misc/eran.jpeg">
-                <img id="monster3" width="60" height="60" style="display: none;" src="misc/idan.jpeg">
+                <img id="monster1" width="60" height="60" style="display: none;" src="misc/monster1.png">
+                <img id="monster2" width="60" height="60" style="display: none;" src="misc/monster2.png">
+                <img id="monster3" width="60" height="60" style="display: none;" src="misc/monster3.png">
                 <img id="hamburger" width="60" height="60" style="display: none;" src="misc/hamburger.png">
                 <img id="heart" width="60" height="60" style="display: none;" src="misc/heart.png">
                 <img id="clock" width="60" height="60" style="display: none;" src="misc/clock.png">
@@ -233,35 +240,33 @@
                 <table>
                     <tr>
                         <td>
-                            <input type="button" class="settingButton" id="newgame" value="New Game"
-                                onclick="newGame()">
+                            <button class="settingButton" id="newgame" onclick="newGame()">New Game</button>
                             <br>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" class="settingButton" id="pausegame" value="Pause Game"
-                                onclick="pauseGame()">
+                            <button class="settingButton" id="pausegame" onclick="pauseGame()">Pause Game</button>
                             <br>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" class="settingButton" id="resumegame" value="Resume Game"
-                                onclick="resumeGame()">
+                            <button class="settingButton" id="resumegame" onclick="resumeGame()">Resume Game</button>
                             <br>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" class="settingButton" id="newgame" value="Mute Sound"
-                                onclick="muteMusic()">
+                            <button class="settingButton" id="newgame" onclick="muteMusic()">Mute Sound</button>
                             <br>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" class="settingButton" id="gameinstructions" value="Game Instructions">
+                            <button class="settingButton" id="gameinstructions">Game Instructions</button>
+                            <br>
+                            <br>
                             <br>
                         </td>
                     </tr>
@@ -338,12 +343,14 @@
 
     </div>
 
-    <script type="text/javascript" src="main.js"></script>
 
     <footer>
-        Edan & Idan
-        Contact us: benivre@post.bgu.ac.il
+        Edan & Idan &nbsp; <br> 
+        Contact us: benivre@post.bgu.ac.il &nbsp;&nbsp;
     </footer>
+    <script type="text/javascript" src="main.js"></script>
+
+
 
 </body>
 
