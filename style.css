@@ -171,6 +171,10 @@ button {
 	table-layout: fixed;
 }
 
+.left button {
+	font-size: 110%;
+}
+
 #game td {
 	vertical-align: 0;
 }
